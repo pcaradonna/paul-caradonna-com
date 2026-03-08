@@ -1018,18 +1018,18 @@ cardsContainer.addEventListener('mousedown', e => {
 // ── ZOOM BUTTONS ─────────────────────────────────────────────────────────────
 document.getElementById('zoom-in').addEventListener('click', e => {
   e.stopPropagation();
-  zoomAround(W / 2, H / 2, 1.25);
+  zoomAround(W / 2, H / 2, 1.1);
 });
 document.getElementById('zoom-out').addEventListener('click', e => {
   e.stopPropagation();
-  zoomAround(W / 2, H / 2, 1 / 1.25);
+  zoomAround(W / 2, H / 2, 1 / 1.1);
 });
 
 // scroll-wheel zoom (disabled in list view so normal scroll works)
 document.addEventListener('wheel', e => {
   if (isListView) return;
   e.preventDefault();
-  zoomAround(e.clientX, e.clientY, e.deltaY < 0 ? 1.1 : 1 / 1.1);
+  zoomAround(e.clientX, e.clientY, e.deltaY < 0 ? 1.04 : 1 / 1.04);
 }, { passive: false });
 
 // ── DETAIL PANEL ─────────────────────────────────────────────────────────────
