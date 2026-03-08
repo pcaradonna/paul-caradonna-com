@@ -201,6 +201,21 @@
       margin-bottom: 10px;
     }
 
+    #detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .detail-tag {
+      font-size: 0.6rem;
+      padding: 2px 7px;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+      opacity: 0.85;
+    }
+
     #detail-doi {
       font-size: 0.66rem;
       color: #444;
@@ -357,6 +372,7 @@
   <span id="detail-close">[ close ]</span>
   <div id="detail-title"></div>
   <div id="detail-citation"></div>
+  <div id="detail-tags"></div>
   <a id="detail-doi" href="#" target="_blank" rel="noopener"></a>
 </div>
 
@@ -962,18 +978,21 @@ const themeColors = {
 
 const themeOrder = Object.keys(themeColors);
 
-// ── LINKS: auto-generate from ≥2 shared tags ─────────────────────────────────
-// tag frequency for picking the "most specific" shared theme per link
+// ── LINKS: auto-generate from ≥2 shared RESEARCH tags (organism tags excluded) ─
+const ORGANISM_TAGS = new Set(['plant', 'animal', 'pollinator']);
+
 const tagFreq = {};
-papers.forEach(p => p.tags.forEach(t => { tagFreq[t] = (tagFreq[t] || 0) + 1; }));
+papers.forEach(p => p.tags.forEach(t => {
+  if (!ORGANISM_TAGS.has(t)) tagFreq[t] = (tagFreq[t] || 0) + 1;
+}));
 
 const links = [];
 for (let i = 0; i < papers.length; i++) {
   for (let j = i + 1; j < papers.length; j++) {
-    const shared = papers[i].tags.filter(t => papers[j].tags.includes(t));
+    const shared = papers[i].tags.filter(t => !ORGANISM_TAGS.has(t) && papers[j].tags.includes(t));
     if (shared.length >= 2) {
       // color by the rarest shared theme (most specific)
-      const theme = shared.slice().sort((a, b) => tagFreq[a] - tagFreq[b])[0];
+      const theme = shared.slice().sort((a, b) => (tagFreq[a] || 0) - (tagFreq[b] || 0))[0];
       links.push({ source: papers[i].id, target: papers[j].id, theme });
     }
   }
@@ -1163,6 +1182,7 @@ document.addEventListener('wheel', e => {
 const panel = document.getElementById('detail-panel');
 const detailTitle = document.getElementById('detail-title');
 const detailCitation = document.getElementById('detail-citation');
+const detailTags = document.getElementById('detail-tags');
 const detailDoi = document.getElementById('detail-doi');
 const detailClose = document.getElementById('detail-close');
 let activeCard = null;
@@ -1174,6 +1194,11 @@ function openDetail(node, el) {
 
   detailTitle.textContent = node.title;
   detailCitation.textContent = node.citation;
+
+  detailTags.innerHTML = node.tags.map(t => {
+    const col = themeColors[t] || '#555';
+    return '<span class="detail-tag" style="background:' + col + '22; color:' + col + '; border:1px solid ' + col + '55">' + t + '</span>';
+  }).join('');
 
   if (node.doi) {
     detailDoi.href = node.doi;
