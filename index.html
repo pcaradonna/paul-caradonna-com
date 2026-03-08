@@ -69,7 +69,7 @@
       border: 1px solid #b8b8b8;
       padding: 10px 12px;
       cursor: pointer;
-      transform: translate(-50%, -50%);
+      transform-origin: center center;
       transition: border-color 0.15s;
       user-select: none;
       overflow: hidden;
@@ -269,14 +269,14 @@
 
     .list-title {
       font-size: 0.72rem;
-      color: #ccc;
+      color: #e8e8e8;
       line-height: 1.5;
       margin-bottom: 3px;
     }
 
     .list-citation {
       font-size: 0.58rem;
-      color: #4a4a4a;
+      color: #777;
       line-height: 1.6;
     }
 
@@ -284,12 +284,12 @@
       display: inline-block;
       margin-top: 2px;
       font-size: 0.56rem;
-      color: #2e2e2e;
+      color: #444;
       text-decoration: none;
     }
 
     .list-doi:hover {
-      color: #666;
+      color: #999;
     }
 
     #view-toggle {
@@ -298,8 +298,8 @@
       right: 2.2rem;
       z-index: 10;
       background: none;
-      border: 1px solid #222;
-      color: #444;
+      border: 1px solid #555;
+      color: #bbb;
       font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
       font-size: 0.58rem;
       letter-spacing: 0.05em;
@@ -308,8 +308,8 @@
     }
 
     #view-toggle:hover {
-      border-color: #555;
-      color: #999;
+      border-color: #999;
+      color: #fff;
     }
 
     #zoom-controls {
@@ -896,8 +896,6 @@ const cardEls = nodes.map((node, i) => {
   ).join('');
   div.innerHTML =
     '<div class="card-title">' + node.title + '</div>' +
-    '<div class="card-meta">' + node.year +
-    (node.journal ? ' \u00b7 ' + node.journal : '') + '</div>' +
     '<div class="card-dots">' + dots + '</div>';
   div.style.left = node.x + 'px';
   div.style.top = node.y + 'px';
@@ -920,6 +918,7 @@ function updatePositions() {
   nodes.forEach((node, i) => {
     cardEls[i].style.left = (node.x * zoomScale + panX) + 'px';
     cardEls[i].style.top  = (node.y * zoomScale + panY) + 'px';
+    cardEls[i].style.transform = 'translate(-50%,-50%) scale(' + zoomScale + ')';
   });
   svgGroup.attr('transform', `translate(${panX},${panY}) scale(${zoomScale})`);
   lineEls
@@ -1026,8 +1025,9 @@ document.getElementById('zoom-out').addEventListener('click', e => {
   zoomAround(W / 2, H / 2, 1 / 1.25);
 });
 
-// scroll-wheel zoom
+// scroll-wheel zoom (disabled in list view so normal scroll works)
 document.addEventListener('wheel', e => {
+  if (isListView) return;
   e.preventDefault();
   zoomAround(e.clientX, e.clientY, e.deltaY < 0 ? 1.1 : 1 / 1.1);
 }, { passive: false });
