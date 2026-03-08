@@ -819,19 +819,66 @@ const papers = [
   }
 ];
 
+// ── PAPER TAGS (organism + research columns combined) ────────────────────────
+const paperTags = {
+  0:  ['plant', 'animal', 'community', 'interactions', 'pollination'],
+  1:  ['plant', 'animal', 'community', 'pollination', 'environmental change'],
+  2:  ['animal', 'population', 'interactions', 'phenology', 'environmental change'],
+  3:  ['animal', 'population', 'community'],
+  4:  ['plant', 'pollination', 'interactions', 'environmental change'],
+  5:  ['plant', 'animal', 'community', 'interactions', 'pollination'],
+  6:  ['plant', 'animal', 'community', 'interactions', 'pollination'],
+  7:  ['plant', 'pollination'],
+  8:  ['creative inquiry'],
+  9:  ['population', 'community', 'interactions'],
+  10: ['plant', 'animal', 'community', 'interactions', 'environmental change'],
+  11: ['plant', 'phenology', 'population'],
+  12: ['pollinator', 'population', 'community', 'interactions', 'environmental change'],
+  13: ['pollinator', 'population', 'community'],
+  14: ['plant', 'animal', 'community', 'interactions', 'pollination', 'environmental change'],
+  15: ['animal', 'community', 'interactions', 'environmental change'],
+  16: ['plant', 'animal', 'community', 'interactions', 'pollination'],
+  17: ['plant', 'animal', 'community', 'interactions', 'pollination'],
+  18: ['plant', 'animal', 'community', 'interactions', 'environmental change'],
+  19: ['plant', 'animal', 'population', 'community', 'interactions', 'environmental change', 'phenology'],
+  20: ['plant', 'population', 'community', 'environmental change', 'phenology'],
+  21: ['plant', 'animal', 'community', 'interactions', 'environmental change'],
+  22: ['pollinator', 'community', 'interactions', 'environmental change'],
+  23: ['community', 'interactions', 'environmental change'],
+  24: ['plant', 'animal', 'community', 'interactions', 'phenology'],
+  25: ['plant', 'animal', 'community', 'interactions', 'phenology'],
+  26: ['animal', 'population'],
+  27: ['animal', 'population', 'environmental change'],
+  28: ['plant', 'animal', 'community', 'interactions', 'phenology', 'pollination'],
+  29: ['plant', 'population', 'environmental change', 'phenology'],
+  30: ['community', 'interactions', 'environmental change'],
+  31: ['animal', 'population', 'environmental change', 'phenology'],
+  32: ['animal', 'population', 'interactions', 'pollination'],
+  33: ['animal', 'population', 'community', 'environmental change', 'phenology'],
+  34: ['creative inquiry'],
+  35: ['plant', 'animal', 'community', 'interactions', 'phenology', 'pollination'],
+  36: ['plant', 'population', 'environmental change', 'phenology'],
+  37: ['plant', 'phenology', 'community', 'environmental change'],
+  38: ['population', 'community', 'interactions', 'environmental change', 'phenology'],
+  39: ['plant', 'community', 'interactions', 'environmental change', 'phenology'],
+  40: ['community', 'interactions', 'environmental change', 'phenology'],
+  41: ['plant', 'animal', 'population', 'interactions', 'phenology', 'environmental change', 'pollination'],
+  42: ['plant', 'pollination'],
+};
+papers.forEach(p => { if (paperTags[p.id] !== undefined) p.tags = paperTags[p.id]; });
+
 // ── THEME COLORS ─────────────────────────────────────────────────────────────
 const themeColors = {
-  phenology:      '#e8a838',
-  networks:       '#38bfc0',
-  temporal:       '#9b72d0',
-  climate:        '#e05e3a',
-  bees:           '#d4c020',
-  urban:          '#72b84e',
-  demography:     '#d06090',
-  nectar:         '#82c060',
-  subalpine:      '#4888d0',
-  'art-science':  '#d048a0',
-  community:      '#a0a0a0'
+  plant:                  '#5a9e50',
+  animal:                 '#e8853a',
+  pollinator:             '#d4c020',
+  community:              '#8a8a8a',
+  interactions:           '#38bfc0',
+  pollination:            '#9b72d0',
+  'environmental change': '#e05e3a',
+  population:             '#4888d0',
+  phenology:              '#e8a838',
+  'creative inquiry':     '#d048a0'
 };
 
 const themeOrder = Object.keys(themeColors);
