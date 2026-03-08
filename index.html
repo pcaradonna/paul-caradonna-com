@@ -12,7 +12,6 @@
     }
 
     html, body {
-      height: 100%;
       background: #000;
       color: #fff;
       font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
@@ -20,26 +19,24 @@
       font-weight: 400;
     }
 
-    main {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 10vw;
+    header {
+      padding: 4vw 6vw 3vw;
     }
 
     .title {
       font-size: 1.35em;
       font-weight: inherit;
       letter-spacing: -0.02em;
-      line-height: 1;
-      margin-bottom: 1.2rem;
+      line-height: 1.2;
     }
 
-    .subtitle {
-      letter-spacing: 0.04em;
-      margin-bottom: 1.2rem;
+    #hero {
+      display: block;
+      width: calc(100% - 12vw);
+      margin: 0 6vw 6vw;
+      height: 75vh;
+      object-fit: cover;
+      object-position: center;
     }
 
     footer {
@@ -48,15 +45,26 @@
       right: 2.5rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      z-index: 1;
+      font-size: 0.85em;
     }
   </style>
 </head>
 <body>
-  <main>
-    <h1 class="title">Paul CaraDonna</h1>
-    <p class="subtitle">Coming soon</p>
-  </main>
+  <header>
+    <h1 class="title">The Research Group of Paul CaraDonna</h1>
+  </header>
+  <img id="hero" src="" alt="Field site landscape">
   <footer>paul-caradonna.com</footer>
+  <script>
+    const images = [
+      'assets/000001980005.jpg',
+      'assets/000001980011.jpg',
+      'assets/000001980019.jpg',
+      'assets/000001980020.jpg',
+      'assets/000001980021.jpg',
+      'assets/000001980025.jpg'
+    ];
+    document.getElementById('hero').src = images[Math.floor(Math.random() * images.length)];
+  </script>
 </body>
 </html>
