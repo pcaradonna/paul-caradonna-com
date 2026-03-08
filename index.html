@@ -44,8 +44,8 @@
       position: absolute;
       width: 220px;
       height: 85px;
-      background: #111;
-      border: 1px solid #2a2a2a;
+      background: #d8d8d8;
+      border: 1px solid #b8b8b8;
       padding: 10px 12px;
       cursor: pointer;
       transform: translate(-50%, -50%);
@@ -55,17 +55,17 @@
     }
 
     .card:hover {
-      border-color: #666;
+      border-color: #777;
     }
 
     .card.active {
-      border-color: #bbb;
+      border-color: #333;
     }
 
     .card-title {
       font-size: 0.68rem;
       line-height: 1.35;
-      color: #ddd;
+      color: #111;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 3;
@@ -74,7 +74,7 @@
 
     .card-meta {
       font-size: 0.58rem;
-      color: #555;
+      color: #777;
       margin-top: 5px;
       white-space: nowrap;
       overflow: hidden;
@@ -672,21 +672,16 @@ const cardEls = nodes.map((node, i) => {
 
 // ── SIMULATION ───────────────────────────────────────────────────────────────
 const simulation = d3.forceSimulation(nodes)
-  .force('link', d3.forceLink(links).id(d => d.id).distance(190).strength(0.25))
-  .force('charge', d3.forceManyBody().strength(-380))
-  .force('center', d3.forceCenter(W / 2, H / 2).strength(0.04))
-  .force('collide', d3.forceCollide(CARD_R).strength(0.8))
-  .alphaDecay(0.008)
-  .velocityDecay(0.45)
+  .force('link', d3.forceLink(links).id(d => d.id).distance(260).strength(0.15))
+  .force('charge', d3.forceManyBody().strength(-250))
+  .force('center', d3.forceCenter(W / 2, H / 2).strength(0.02))
+  .force('collide', d3.forceCollide(CARD_R).strength(0.7))
+  .alphaDecay(0.006)
+  .velocityDecay(0.6)
   .on('tick', tick);
 
 function tick() {
-  const padX = CARD_W / 2 + 8;
-  const padY = CARD_H / 2 + 8;
-
   nodes.forEach((node, i) => {
-    node.x = Math.max(padX, Math.min(W - padX, node.x));
-    node.y = Math.max(padY, Math.min(H - padY, node.y));
     cardEls[i].style.left = node.x + 'px';
     cardEls[i].style.top = node.y + 'px';
   });
@@ -786,7 +781,7 @@ window.addEventListener('resize', () => {
   W = window.innerWidth;
   H = window.innerHeight;
   svg.attr('width', W).attr('height', H);
-  simulation.force('center', d3.forceCenter(W / 2, H / 2).strength(0.04));
+  simulation.force('center', d3.forceCenter(W / 2, H / 2).strength(0.02));
   simulation.alpha(0.3).restart();
 });
 </script>
