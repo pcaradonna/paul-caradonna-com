@@ -876,7 +876,7 @@ const lineEls = svgGroup.selectAll('line')
   .enter()
   .append('line')
   .attr('stroke', d => themeColors[d.theme] || '#fff')
-  .attr('stroke-opacity', 0.3)
+  .attr('stroke-opacity', 0.55)
   .attr('stroke-width', 1);
 
 // ── CARDS ─────────────────────────────────────────────────────────────────────
@@ -905,8 +905,8 @@ const cardEls = nodes.map((node, i) => {
 
 // ── SIMULATION ───────────────────────────────────────────────────────────────
 const simulation = d3.forceSimulation(nodes)
-  .force('link', d3.forceLink(links).id(d => d.id).distance(260).strength(0.15))
-  .force('charge', d3.forceManyBody().strength(-280))
+  .force('link', d3.forceLink(links).id(d => d.id).distance(320).strength(0.12))
+  .force('charge', d3.forceManyBody().strength(-380))
   .force('center', d3.forceCenter(W / 2, H * 0.58).strength(0.02))
   .force('yBias', d3.forceY(H * 0.6).strength(0.015))
   .force('collide', d3.forceCollide(CARD_R).strength(0.7))
@@ -933,7 +933,7 @@ function tick() {
 }
 
 function zoomAround(cx, cy, factor) {
-  const newScale = Math.max(0.3, Math.min(3, zoomScale * factor));
+  const newScale = Math.max(0.55, Math.min(3, zoomScale * factor));
   const simCX = (cx - panX) / zoomScale;
   const simCY = (cy - panY) / zoomScale;
   panX = cx - simCX * newScale;
