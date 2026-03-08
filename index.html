@@ -102,6 +102,71 @@
       text-overflow: ellipsis;
     }
 
+    .card-dots {
+      position: absolute;
+      bottom: 7px;
+      right: 8px;
+      display: flex;
+      gap: 3px;
+    }
+
+    .tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      display: inline-block;
+      opacity: 0.7;
+    }
+
+    .card.dimmed {
+      opacity: 0.12;
+    }
+
+    line.dimmed {
+      opacity: 0.04 !important;
+    }
+
+    #legend {
+      position: fixed;
+      bottom: 1.6rem;
+      left: 2.5rem;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      opacity: 0.45;
+      transition: opacity 0.15s;
+    }
+
+    .legend-item:hover {
+      opacity: 0.8;
+    }
+
+    .legend-item.active {
+      opacity: 1;
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .legend-label {
+      font-size: 0.6rem;
+      color: #ccc;
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
+    }
+
     #detail-panel {
       position: fixed;
       bottom: 0;
@@ -189,6 +254,7 @@
   <a id="detail-doi" href="#" target="_blank" rel="noopener"></a>
 </div>
 
+<div id="legend"></div>
 <footer>paul-caradonna.com</footer>
 
 <script>
@@ -641,13 +707,36 @@ const papers = [
   }
 ];
 
+// ── THEME COLORS ─────────────────────────────────────────────────────────────
+const themeColors = {
+  phenology:      '#e8a838',
+  networks:       '#38bfc0',
+  temporal:       '#9b72d0',
+  climate:        '#e05e3a',
+  bees:           '#d4c020',
+  urban:          '#72b84e',
+  demography:     '#d06090',
+  nectar:         '#82c060',
+  subalpine:      '#4888d0',
+  'art-science':  '#d048a0',
+  community:      '#a0a0a0'
+};
+
+const themeOrder = Object.keys(themeColors);
+
 // ── LINKS: auto-generate from ≥2 shared tags ─────────────────────────────────
+// tag frequency for picking the "most specific" shared theme per link
+const tagFreq = {};
+papers.forEach(p => p.tags.forEach(t => { tagFreq[t] = (tagFreq[t] || 0) + 1; }));
+
 const links = [];
 for (let i = 0; i < papers.length; i++) {
   for (let j = i + 1; j < papers.length; j++) {
     const shared = papers[i].tags.filter(t => papers[j].tags.includes(t));
     if (shared.length >= 2) {
-      links.push({ source: papers[i].id, target: papers[j].id });
+      // color by the rarest shared theme (most specific)
+      const theme = shared.slice().sort((a, b) => tagFreq[a] - tagFreq[b])[0];
+      links.push({ source: papers[i].id, target: papers[j].id, theme });
     }
   }
 }
@@ -679,7 +768,8 @@ const lineEls = svgGroup.selectAll('line')
   .data(links)
   .enter()
   .append('line')
-  .attr('stroke', 'rgba(255,255,255,0.28)')
+  .attr('stroke', d => themeColors[d.theme] || '#fff')
+  .attr('stroke-opacity', 0.3)
   .attr('stroke-width', 1);
 
 // ── CARDS ─────────────────────────────────────────────────────────────────────
@@ -694,10 +784,14 @@ const cardsContainer = document.getElementById('cards');
 const cardEls = nodes.map((node, i) => {
   const div = document.createElement('div');
   div.className = 'card';
+  const dots = node.tags.map(t =>
+    '<span class="tag-dot" style="background:' + (themeColors[t] || '#888') + '" title="' + t + '"></span>'
+  ).join('');
   div.innerHTML =
     '<div class="card-title">' + node.title + '</div>' +
     '<div class="card-meta">' + node.short + ' \u00b7 ' + node.year +
-    (node.journal ? ' \u00b7 ' + node.journal : '') + '</div>';
+    (node.journal ? ' \u00b7 ' + node.journal : '') + '</div>' +
+    '<div class="card-dots">' + dots + '</div>';
   div.style.left = node.x + 'px';
   div.style.top = node.y + 'px';
   cardsContainer.appendChild(div);
@@ -832,6 +926,54 @@ function closeDetail() {
 
 document.addEventListener('click', closeDetail);
 detailClose.addEventListener('click', e => { e.stopPropagation(); closeDetail(); });
+
+// ── LEGEND & THEME FILTER ────────────────────────────────────────────────────
+const legendEl = document.getElementById('legend');
+let activeTheme = null;
+
+themeOrder.forEach(theme => {
+  const item = document.createElement('div');
+  item.className = 'legend-item';
+  item.dataset.theme = theme;
+  item.innerHTML =
+    '<span class="legend-dot" style="background:' + themeColors[theme] + '"></span>' +
+    '<span class="legend-label">' + theme + '</span>';
+  item.addEventListener('click', e => {
+    e.stopPropagation();
+    if (activeTheme === theme) {
+      activeTheme = null;
+      applyThemeFilter();
+      item.classList.remove('active');
+    } else {
+      legendEl.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
+      activeTheme = theme;
+      applyThemeFilter();
+      item.classList.add('active');
+    }
+  });
+  legendEl.appendChild(item);
+});
+
+function applyThemeFilter() {
+  if (!activeTheme) {
+    cardEls.forEach(el => el.classList.remove('dimmed'));
+    lineEls.classed('dimmed', false);
+    return;
+  }
+  cardEls.forEach((el, i) => {
+    el.classList.toggle('dimmed', !nodes[i].tags.includes(activeTheme));
+  });
+  lineEls.classed('dimmed', d => d.theme !== activeTheme);
+}
+
+// clear filter on background click
+document.addEventListener('click', () => {
+  if (activeTheme) {
+    activeTheme = null;
+    applyThemeFilter();
+    legendEl.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
+  }
+});
 
 // ── RESIZE ───────────────────────────────────────────────────────────────────
 window.addEventListener('resize', () => {
