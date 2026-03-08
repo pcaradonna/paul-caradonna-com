@@ -645,7 +645,7 @@ const lineEls = svg.selectAll('line')
   .data(links)
   .enter()
   .append('line')
-  .attr('stroke', 'rgba(255,255,255,0.08)')
+  .attr('stroke', 'rgba(255,255,255,0.28)')
   .attr('stroke-width', 1);
 
 // ── CARDS ─────────────────────────────────────────────────────────────────────
@@ -676,8 +676,8 @@ const simulation = d3.forceSimulation(nodes)
   .force('charge', d3.forceManyBody().strength(-250))
   .force('center', d3.forceCenter(W / 2, H / 2).strength(0.02))
   .force('collide', d3.forceCollide(CARD_R).strength(0.7))
-  .alphaDecay(0.006)
-  .velocityDecay(0.6)
+  .alphaDecay(0.04)
+  .velocityDecay(0.85)
   .on('tick', tick);
 
 function tick() {
