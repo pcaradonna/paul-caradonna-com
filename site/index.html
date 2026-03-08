@@ -377,10 +377,10 @@ const papers = [
     id: 0,
     title: "Protocol to increase accuracy of metagenomic barcoding using Angiosperms353: a case study with bumble bee pollen loads",
     short: "Benkendorf, Woodworth, CaraDonna, Ogilvie, Taddeo, Fant",
-    year: "in rev.",
-    journal: "",
-    citation: "Benkendorf, R., E. Woodworth, P.J. CaraDonna, J.E. Ogilvie, S. Taddeo, J. Fant. Protocol to increase accuracy and fidelity of metagenomic barcoding using Angiosperms353: a case study using pollen loads from wild bumble bees. In Revision.",
-    doi: "",
+    year: 2025,
+    journal: "Applications in Plant Sciences",
+    citation: "Benkendorf, R., E. Woodworth, P.J. CaraDonna, J.E. Ogilvie, S. Taddeo, J. Fant. Protocol to increase accuracy of metagenomic barcoding using Angiosperms353: a case study with bumble bee pollen loads. Applications in Plant Sciences.",
+    doi: "https://doi.org/10.1002/aps3.70026",
     tags: ["bees"]
   },
   // 2025
@@ -816,6 +816,78 @@ const papers = [
     citation: "CaraDonna, P.J., J.D. Ackerman. Reproductive assurance for a rewardless epiphytic orchid in Puerto Rico, Pleurothallis ruscifolia. The Caribbean Journal of Science. 46 (2-3): 249-257.",
     doi: "",
     tags: ["community"]
+  },
+
+  // 2025–2026 new papers
+  {
+    id: 43,
+    title: "Predicting interaction frequency in plant-pollinator networks",
+    short: "Dormann, Castillo, CaraDonna et al.",
+    year: 2025,
+    journal: "EcoEvoRxiv",
+    citation: "Dormann, C.F., W.J. Castillo, P.J. CaraDonna, et al. Predicting interaction frequency in plant-pollinator networks. EcoEvoRxiv.",
+    doi: "https://doi.org/10.32942/X2S63Z",
+    tags: []
+  },
+  {
+    id: 44,
+    title: "Nutrient niche dynamics among wild pollinators",
+    short: "CaraDonna et al.",
+    year: 2025,
+    journal: "Proceedings of the Royal Society B",
+    citation: "CaraDonna, P.J., et al. Nutrient niche dynamics among wild pollinators. Proceedings of the Royal Society B.",
+    doi: "https://doi.org/10.1098/rspb.2025.0643",
+    tags: []
+  },
+  {
+    id: 45,
+    title: "Climate-driven specialisation in plant\u2013pollinator networks peaks outside the tropics",
+    short: "Sakhalkar, Bl\u00fcthgen, Burkle, CaraDonna et al.",
+    year: 2025,
+    journal: "bioRxiv",
+    citation: "Sakhalkar, S.P., N. Bl\u00fcthgen, L.A. Burkle, P.J. CaraDonna, et al. Climate-driven specialisation in plant\u2013pollinator networks peaks outside the tropics. bioRxiv.",
+    doi: "https://doi.org/10.1101/2025.10.08.680666",
+    tags: []
+  },
+  {
+    id: 46,
+    title: "Cultivating curiosity",
+    short: "CaraDonna et al.",
+    year: 2025,
+    journal: "Frontiers in Ecology and the Environment",
+    citation: "CaraDonna, P.J., et al. Cultivating curiosity. Frontiers in Ecology and the Environment.",
+    doi: "https://doi.org/10.1002/fee.2863",
+    tags: []
+  },
+  {
+    id: 47,
+    title: "A Practical Roadmap For Sampling Floral Nectar From Communities of Many Plant Species",
+    short: "Kirschke, Bain, Ogilvie, CaraDonna",
+    year: 2025,
+    journal: "bioRxiv",
+    citation: "Kirschke, G.E., J.A. Bain, J.E. Ogilvie, P.J. CaraDonna. A Practical Roadmap For Sampling Floral Nectar From Communities of Many Plant Species. bioRxiv.",
+    doi: "https://doi.org/10.64898/2025.12.19.695174",
+    tags: []
+  },
+  {
+    id: 48,
+    title: "Meta-analyses reveal no clear demographic consequences of phenological change across taxa",
+    short: "Godtfredsen, CaraDonna, Foxx, Iler et al.",
+    year: 2025,
+    journal: "bioRxiv",
+    citation: "Godtfredsen, E., P.J. CaraDonna, A. Foxx, J. Bain, B. Connolly, K. Dawdy, A. Doucet, J. Fitzgerald, G. Kirschke, J. Ogilvie, C. Rigby, J. Scholl, D. Sandacz, S. Rosa, A. Zink, A.M. Iler. Meta-analyses reveal no clear demographic consequences of phenological change across taxa. bioRxiv.",
+    doi: "https://doi.org/10.1101/2025.10.29.685396",
+    tags: []
+  },
+  {
+    id: 49,
+    title: "Changing pollination rates affect plant life history strategies",
+    short: "Simpson, Petry, CaraDonna, Iler",
+    year: 2026,
+    journal: "bioRxiv",
+    citation: "Simpson, D.T., W.K. Petry, P.J. CaraDonna, A.M. Iler. Changing pollination rates affect plant life history strategies. bioRxiv.",
+    doi: "https://doi.org/10.64898/2026.02.11.705202",
+    tags: []
   }
 ];
 
@@ -864,6 +936,13 @@ const paperTags = {
   40: ['community', 'interactions', 'environmental change', 'phenology'],
   41: ['plant', 'animal', 'population', 'interactions', 'phenology', 'environmental change', 'pollination'],
   42: ['plant', 'pollination'],
+  43: ['plant', 'animal', 'community', 'interactions', 'pollination'],
+  44: ['plant', 'animal', 'population', 'community', 'interactions', 'pollination'],
+  45: ['plant', 'animal', 'community', 'interactions', 'pollination'],
+  46: ['population', 'interactions', 'environmental change', 'creative inquiry'],
+  47: ['plant', 'pollination', 'interactions', 'community'],
+  48: ['population', 'phenology', 'environmental change'],
+  49: ['plant', 'pollination', 'population', 'interactions', 'environmental change'],
 };
 papers.forEach(p => { if (paperTags[p.id] !== undefined) p.tags = paperTags[p.id]; });
 
@@ -943,6 +1022,7 @@ const cardEls = nodes.map((node, i) => {
   ).join('');
   div.innerHTML =
     '<div class="card-title">' + node.title + '</div>' +
+    '<div class="card-meta">' + node.short + ' \u00b7 ' + node.year + '</div>' +
     '<div class="card-dots">' + dots + '</div>';
   div.style.left = node.x + 'px';
   div.style.top = node.y + 'px';

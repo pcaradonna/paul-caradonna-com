@@ -1,44 +1,51 @@
-id,title,year,journal,doi,tags
-0,"Protocol to increase accuracy of metagenomic barcoding using Angiosperms353: a case study with bumble bee pollen loads",in rev.,,,"bees"
-1,"Setting goals for pollinator gardens",2025,Conservation Biology,,"bees|urban|community"
-2,"Fitness consequences of non-native floral resource use for subalpine solitary bees: evidence of an ecological trap?",2025,Oikos,https://doi.org/10.1111/oik.11151,"bees|subalpine|community"
-3,"Intraspecific body size variation across distributional moments reveals trait filtering processes",2025,Journal of Animal Ecology,https://doi.org/10.1111/1365-2656.14205,"bees|community"
-4,"Pollination deficits increase with urbanization on urban farms in Chicago",2024,Ecosphere,https://doi.org/10.1002/ecs2.70100,"urban|networks|community"
-5,"Sodium-enriched nectar shapes plant-pollinator interactions in a subalpine meadow",2024,Ecology & Evolution,https://doi.org/10.1002/ece3.70026,"nectar|networks|subalpine"
-6,"Predicting plant-pollinator interactions: concepts, methods, and challenges",2024,Trends in Ecology & Evolution,https://doi.org/10.1016/j.tree.2024.01.003,"networks|community"
-7,"The reproductive ecology of Erigeron speciosus, a montane perennial herb: evidence of self-incompatibility",2024,Southwestern Naturalist,https://doi.org/10.1894/0038-4909-68.1.13,"subalpine|phenology|community"
-8,"Can the collaboration of science and art broaden our understanding of nature?",2023,Plant Science Bulletin,,"art-science|community"
-9,"Book review: Foundations of Ecology II: Classic Papers with Commentaries",2023,Quarterly Review of Biology,,"community"
-10,"The effects of decline of a keystone plant species on a dune community plant-pollinator network",2023,Frontiers in Conservation Science,,"networks|community"
-11,"Genotype accounts for intraspecific variation in the timing and duration of life cycle events",2023,American Journal of Botany,https://doi.org/10.1002/ajb2.16112,"phenology|demography|climate"
-12,"The shifting importance of abiotic and biotic factors across the life cycles of wild pollinators",2022,Journal of Animal Ecology,https://doi.org/10.1111/1365-2656.13799,"bees|community|climate"
-13,"Ecological drivers and consequences of bumble bee body size variation",2022,Environmental Entomology,https://doi.org/10.1093/ee/nvac061,"bees|climate"
-14,"Removing flowers of a generalist plant changes pollinator visitation, composition, and interaction network structure",2022,Ecosphere,https://doi.org/10.1002/ecs2.4154,"networks|community"
-15,"Reef fishes weaken dietary preferences after coral mortality, altering resource overlap",2022,Journal of Animal Ecology,https://doi.org/10.1111/1365-2656.13779,"networks|community"
-16,"Response to Pyke and Ren: How to study interactions",2022,Journal of Pollination Ecology,,"networks|nectar"
-17,"Sodium-enriched floral nectar increases pollinator visitation rate and diversity",2022,Biology Letters,https://doi.org/10.1098/rsbl.2022.0016,"nectar|networks|community"
-18,"Seeing through the static: the temporal dimension of plant-animal mutualistic interactions",2021,Ecology Letters,https://doi.org/10.1111/ele.13653,"networks|temporal|community"
-19,"Demographic consequences of phenological shifts in response to climate change",2021,Annual Review of Ecology Evolution & Systematics,https://doi.org/10.1146/annurev-ecolsys-011921-015133,"demography|phenology|climate"
-20,"Conceptual and practical issues limit the utility of statistical estimators of phenological events",2021,Ecosphere,https://doi.org/10.1002/ecs2.3828,"phenology|temporal"
-21,"Plant-pollinator interaction niche broadens in response to severe drought perturbations",2021,Oecologia,https://doi.org/10.1007/s00442-021-05040-0,"networks|climate|community"
-22,"Chicago bees: urban areas support diverse bee communities but with more non-native bee species compared to suburban areas",2021,Environmental Entomology,https://doi.org/10.1093/ee/nvab055,"bees|urban|community"
-23,"Trait positions for elevated invasiveness in adaptive ecological networks",2021,Biological Invasions,https://doi.org/10.1007/s10530-021-02677-z,"networks|community"
-24,"Temporal flexibility in the structure of plant-pollinator interaction networks",2020,Oikos,https://doi.org/10.1111/oik.07526,"networks|temporal|subalpine"
-25,"Temporal scale-dependence of plant-pollinator networks",2020,Oikos,https://doi.org/10.1111/oik.07303,"networks|temporal"
-26,"First records of Megachile apicalis from Illinois found in heavily urbanized areas within the City of Chicago",2020,Great Lakes Entomologist,,"bees|urban"
-27,"Contrasting effects of climate change on seasonal survival of a hibernating mammal",2020,PNAS,https://doi.org/10.1073/pnas.1918584117,"climate|demography"
-28,"Untangling the seasonal dynamics of plant-pollinator communities",2020,Nature Communications,https://doi.org/10.1038/s41467-020-17894-y,"networks|temporal|phenology"
-29,"Reproductive losses due to climate change-induced earlier flowering are not the primary threat to plant population viability in a perennial herb",2019,Journal of Ecology,https://doi.org/10.1111/1365-2745.13190,"demography|phenology|climate|subalpine"
-30,"Uneven global distribution of food web studies under climate change",2019,Ecosphere,https://doi.org/10.1002/ecs2.2645,"networks|climate|community"
-31,"Two-year bee, or not two-year bee? How voltinism is affected by temperature and season-length in a high elevation solitary bee",2019,The American Naturalist,https://doi.org/10.1086/702551,"bees|climate|subalpine"
-32,"Atypical flowers can be as profitable as typical hummingbird flowers",2018,The American Naturalist,https://doi.org/10.1086/699827,"nectar|community|subalpine"
-33,"Experimental warming in the field delays phenology and reduces body size, fat content, and survival: implications for the persistence of a pollinator under climate change",2018,Functional Ecology,https://doi.org/10.1111/1365-2435.13151,"bees|climate|phenology|subalpine"
-34,"Art/Science Collaborations: New Explorations of Ecological Systems, Values, and their Feedbacks",2018,Bulletin of the Ecological Society of America,https://doi.org/10.1002/bes2.1384,"art-science|community"
-35,"Interaction rewiring and the rapid turnover of plant-pollinator networks",2017,Ecology Letters,https://doi.org/10.1111/ele.12740,"networks|temporal|subalpine"
-36,"Frost sensitivity of leaves and flowers of subalpine plants is related to tissue type and phenology",2016,Journal of Ecology,https://doi.org/10.1111/1365-2745.12482,"subalpine|phenology|climate"
-37,"Phenological responses to climate change do not exhibit phylogenetic signal in a subalpine plant community",2015,Ecology,https://doi.org/10.1890/14-0547.1,"phenology|subalpine|community|climate"
-38,"Phenological shifts and the fate of mutualism",2015,Oikos,https://doi.org/10.1111/oik.01303,"phenology|networks|climate"
-39,"Shifts in flowering phenology reshape a subalpine plant community",2014,PNAS,https://doi.org/10.1073/pnas.1323073111,"phenology|subalpine|community|climate"
-40,"Phenological overlap of interacting species in a changing climate: an assessment of available approaches",2013,Ecology & Evolution,https://doi.org/10.1002/ece3.722,"phenology|climate|networks"
-41,"Asynchronous changes in phenology of migrating Broad-tailed Hummingbirds and their early-season nectar resources",2012,Ecology,https://doi.org/10.1890/12-0255.1,"phenology|nectar|community"
-42,"Reproductive assurance for a rewardless epiphytic orchid in Puerto Rico, Pleurothallis ruscifolia",2012,Caribbean Journal of Science,,"community"
+id,title,year,journal,doi,claude category,organism,research
+1,Reproductive assurance for a rewardless epiphytic orchid in Puerto Rico Pleurothallis ruscifolia,2012,Caribbean Journal of Science,,,,pollination
+2,Asynchronous changes in phenology of migrating Broad-tailed Hummingbirds and their early-season nectar resources,2012,Ecology,https://doi.org/10.1890/12-0255.1,,plant|animal,population|interactions|phenology|environmental change|pollination
+3,Phenological overlap of interacting species in a changing climate: an assessment of available approaches,2013,Ecology & Evolution,https://doi.org/10.1002/ece3.722,,,community|interactions|environmental change|phenology
+4,Shifts in flowering phenology reshape a subalpine plant community,2014,PNAS,https://doi.org/10.1073/pnas.1323073111,,plant,community|interactions|environmental change|phenology
+5,Phenological responses to climate change do not exhibit phylogenetic signal in a subalpine plant community,2015,Ecology,https://doi.org/10.1890/14-0547.1,,plant,phenology|community|environmental change
+6,Phenological shifts and the fate of mutualism,2015,Oikos,https://doi.org/10.1111/oik.01303,,,population|community|interactions|environmental change|phenology
+7,Frost sensitivity of leaves and flowers of subalpine plants is related to tissue type and phenology,2016,Journal of Ecology,https://doi.org/10.1111/1365-2745.12482,,plant,population|environmental change|phenology
+8,Interaction rewiring and the rapid turnover of plant-pollinator networks,2017,Ecology Letters,https://doi.org/10.1111/ele.12740,,plant|animal,community|interactions|phenology|pollination
+9,Atypical flowers can be as profitable as typical hummingbird flowers,2018,The American Naturalist,https://doi.org/10.1086/699827,,animal,population|interactions|pollination
+10,Art/Science Collaborations: New Explorations of Ecological Systems Values and their Feedbacks,2018,Bulletin of the Ecological Society of America,https://doi.org/10.1002/bes2.1384,,,creative inquiry
+11,Experimental warming in the field delays phenology and reduces body size fat content and survival: implications for the persistence of a pollinator under climate change,2018,Functional Ecology,https://doi.org/10.1111/1365-2435.13151,,animal,population|community|environmental change|phenology
+12,Two-year bee or not two-year bee? How voltinism is affected by temperature and season-length in a high elevation solitary bee,2019,The American Naturalist,https://doi.org/10.1086/702551,,animal,population|environmental change|phenology
+13,Reproductive losses due to climate change-induced earlier flowering are not the primary threat to plant population viability in a perennial herb,2019,Journal of Ecology,https://doi.org/10.1111/1365-2745.13190,,plant,population|environmental change|phenology
+14,Uneven global distribution of food web studies under climate change,2019,Ecosphere,https://doi.org/10.1002/ecs2.2645,,,community|interactions|environmental change
+15,Contrasting effects of climate change on seasonal survival of a hibernating mammal,2020,PNAS,https://doi.org/10.1073/pnas.1918584117,,animal,population|environmental change
+16,First records of Megachile apicalis from Illinois found in heavily urbanized areas within the City of Chicago,2020,Great Lakes Entomologist,,,animal,population
+17,Temporal flexibility in the structure of plant-pollinator interaction networks,2020,Oikos,https://doi.org/10.1111/oik.07526,,plant|animal,community|interactions|phenology
+18,Temporal scale-dependence of plant-pollinator networks,2020,Oikos,https://doi.org/10.1111/oik.07303,,plant|animal,community|interactions|phenology
+19,Untangling the seasonal dynamics of plant-pollinator communities,2020,Nature Communications,https://doi.org/10.1038/s41467-020-17894-y,,plant|animal,community|interactions|phenology|pollination
+20,Chicago bees: urban areas support diverse bee communities but with more non-native bee species compared to suburban areas,2021,Environmental Entomology,https://doi.org/10.1093/ee/nvab055,,pollinator,community|interactions|environmental change
+21,Conceptual and practical issues limit the utility of statistical estimators of phenological events,2021,Ecosphere,https://doi.org/10.1002/ecs2.3828,,plant,population|community|environmental change|phenology
+22,Demographic consequences of phenological shifts in response to climate change,2021,Annual Review of Ecology Evolution & Systematics,https://doi.org/10.1146/annurev-ecolsys-011921-015133,,plant|animal,population|community|interactions|environmental change|phenology
+23,Plant-pollinator interaction niche broadens in response to severe drought perturbations,2021,Oecologia,https://doi.org/10.1007/s00442-021-05040-0,,plant|animal,community|interactions|environmental change
+24,Seeing through the static: the temporal dimension of plant-animal mutualistic interactions,2021,Ecology Letters,https://doi.org/10.1111/ele.13653,,plant|animal,community|interactions|environmental change
+25,Trait positions for elevated invasiveness in adaptive ecological networks,2021,Biological Invasions,https://doi.org/10.1007/s10530-021-02677-z,,,community|interactions|environmental change
+26,Ecological drivers and consequences of bumble bee body size variation,2022,Environmental Entomology,https://doi.org/10.1093/ee/nvac061,,pollinator,population|community
+27,Reef fishes weaken dietary preferences after coral mortality altering resource overlap,2022,Journal of Animal Ecology,https://doi.org/10.1111/1365-2656.13779,,animal,community|interactions|environmental change
+28,Removing flowers of a generalist plant changes pollinator visitation composition and interaction network structure,2022,Ecosphere,https://doi.org/10.1002/ecs2.4154,,plant|animal,community|interactions|pollination|environmental change
+29,Response to Pyke and Ren: How to study interactions,2022,Journal of Pollination Ecology,,,plant|animal,community|interactions|pollination
+30,Sodium-enriched floral nectar increases pollinator visitation rate and diversity,2022,Biology Letters,https://doi.org/10.1098/rsbl.2022.0016,,plant|animal,community|interactions|pollination
+31,The shifting importance of abiotic and biotic factors across the life cycles of wild pollinators,2022,Journal of Animal Ecology,https://doi.org/10.1111/1365-2656.13799,,pollinator,population|community|interactions|environmental change
+32,Book review: Foundations of Ecology II: Classic Papers with Commentaries,2023,Quarterly Review of Biology,,,, ,population|community|interactions
+33,Can the collaboration of science and art broaden our understanding of nature?,2023,Plant Science Bulletin,,,,creative inquiry
+34,Genotype accounts for intraspecific variation in the timing and duration of life cycle events,2023,American Journal of Botany,https://doi.org/10.1002/ajb2.16112,,plant,phenology|population
+35,The effects of decline of a keystone plant species on a dune community plant-pollinator network,2023,Frontiers in Conservation Science,,,plant|animal,community|interactions|environmental change
+36,Predicting plant-pollinator interactions: concepts methods and challenges,2024,Trends in Ecology & Evolution,https://doi.org/10.1016/j.tree.2024.01.003,,plant|animal,community|interactions|pollination
+37,Pollination deficits increase with urbanization on urban farms in Chicago,2024,Ecosphere,https://doi.org/10.1002/ecs2.70100,,plant,pollination|interactions|environmental change
+38,Sodium-enriched nectar shapes plant-pollinator interactions in a subalpine meadow,2024,Ecology & Evolution,https://doi.org/10.1002/ece3.70026,,plant|animal,community|interactions|pollination
+39,The reproductive ecology of Erigeron speciosus a montane perennial herb: evidence of self-incompatibility,2024,Southwestern Naturalist,https://doi.org/10.1894/0038-4909-68.1.13,,plant,pollination
+40,Fitness consequences of non-native floral resource use for subalpine solitary bees: evidence of an ecological trap?,2025,Oikos,https://doi.org/10.1111/oik.11151,,animal,population|interactions|phenology|environmental change
+41,Intraspecific body size variation across distributional moments reveals trait filtering processes,2025,Journal of Animal Ecology,https://doi.org/10.1111/1365-2656.14205,,animal,population|community
+42,Protocol to increase accuracy of metagenomic barcoding using Angiosperms353: a case study with bumble bee pollen loads,2025,Applications in Plant Sciences,https://doi.org/10.1002/aps3.70026,,plant|animal,community|interactions|pollination
+43,Setting goals for pollinator gardens,2025,Conservation Biology,,,plant|animal,community|pollination|environmental change
+44,Cultivating curiosity,2025,Frontiers in Ecology and the Environment,https://doi.org/10.1002/fee.2863,,,population|interactions|environmental change|creative inquiry
+45,Meta-analyses reveal no clear demographic consequences of phenological change across taxa,2025,bioRxiv,https://doi.org/10.1101/2025.10.29.685396,,,population|phenology|environmental change
+46,Nutrient niche dynamics among wild pollinators,2025,Proceedings of the Royal Society B,https://doi.org/10.1098/rspb.2025.0643,,plant|animal,population|community|interactions|pollination
+47,Climate-driven specialisation in plant-pollinator networks peaks outside the tropics,2025,bioRxiv,https://doi.org/10.1101/2025.10.08.680666,,plant|animal,community|interactions|pollination
+48,Predicting interaction frequency in plant-pollinator networks,2025,EcoEvoRxiv,https://doi.org/10.32942/X2S63Z,,plant|animal,community|interactions|pollination
+49,A Practical Roadmap For Sampling Floral Nectar From Communities of Many Plant Species,2025,bioRxiv,https://doi.org/10.64898/2025.12.19.695174,,plant,pollination|interactions|community
+50,Changing pollination rates affect plant life history strategies,2026,bioRxiv,https://doi.org/10.64898/2026.02.11.705202,,plant,pollination|population|interactions|environmental change
