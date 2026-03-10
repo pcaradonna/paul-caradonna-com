@@ -979,7 +979,7 @@ const themeColors = {
 const themeOrder = Object.keys(themeColors);
 
 // ── LINKS: auto-generate from ≥2 shared RESEARCH tags (organism tags excluded) ─
-const ORGANISM_TAGS = new Set(['plant', 'animal', 'pollinator']);
+const ORGANISM_TAGS = new Set(['plant', 'animal', 'pollinator', 'community', 'population']);
 
 const tagFreq = {};
 papers.forEach(p => p.tags.forEach(t => {
@@ -1051,8 +1051,8 @@ const cardEls = nodes.map((node, i) => {
 
 // ── SIMULATION ───────────────────────────────────────────────────────────────
 const simulation = d3.forceSimulation(nodes)
-  .force('link', d3.forceLink(links).id(d => d.id).distance(320).strength(0.12))
-  .force('charge', d3.forceManyBody().strength(-380))
+  .force('link', d3.forceLink(links).id(d => d.id).distance(420).strength(0.08))
+  .force('charge', d3.forceManyBody().strength(-600))
   .force('center', d3.forceCenter(W / 2, H * 0.58).strength(0.02))
   .force('yBias', d3.forceY(H * 0.6).strength(0.015))
   .force('collide', d3.forceCollide(CARD_R).strength(0.7))
