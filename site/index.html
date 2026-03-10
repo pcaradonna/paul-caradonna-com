@@ -921,8 +921,8 @@ const paperTags = {
   9:  ['population', 'community', 'interactions'],
   10: ['plant', 'animal', 'community', 'interactions', 'environmental change'],
   11: ['plant', 'phenology', 'population'],
-  12: ['pollinator', 'population', 'community', 'interactions', 'environmental change'],
-  13: ['pollinator', 'population', 'community'],
+  12: ['animal', 'population', 'community', 'interactions', 'environmental change'],
+  13: ['animal', 'population', 'community'],
   14: ['plant', 'animal', 'community', 'interactions', 'pollination', 'environmental change'],
   15: ['animal', 'community', 'interactions', 'environmental change'],
   16: ['plant', 'animal', 'community', 'interactions', 'pollination'],
@@ -931,7 +931,7 @@ const paperTags = {
   19: ['plant', 'animal', 'population', 'community', 'interactions', 'environmental change', 'phenology'],
   20: ['plant', 'population', 'community', 'environmental change', 'phenology'],
   21: ['plant', 'animal', 'community', 'interactions', 'environmental change'],
-  22: ['pollinator', 'community', 'interactions', 'environmental change'],
+  22: ['animal', 'community', 'interactions', 'environmental change'],
   23: ['community', 'interactions', 'environmental change'],
   24: ['plant', 'animal', 'community', 'interactions', 'phenology'],
   25: ['plant', 'animal', 'community', 'interactions', 'phenology'],
@@ -966,7 +966,6 @@ papers.forEach(p => { if (paperTags[p.id] !== undefined) p.tags = paperTags[p.id
 const themeColors = {
   plant:                  '#5a9e50',
   animal:                 '#e8853a',
-  pollinator:             '#d4c020',
   community:              '#8a8a8a',
   interactions:           '#38bfc0',
   pollination:            '#9b72d0',
@@ -979,7 +978,7 @@ const themeColors = {
 const themeOrder = Object.keys(themeColors);
 
 // ── LINKS: auto-generate from ≥2 shared RESEARCH tags (organism tags excluded) ─
-const ORGANISM_TAGS = new Set(['plant', 'animal', 'pollinator', 'community', 'population']);
+const ORGANISM_TAGS = new Set(['plant', 'animal', 'community', 'population']);
 
 const tagFreq = {};
 papers.forEach(p => p.tags.forEach(t => {
@@ -990,7 +989,7 @@ const links = [];
 for (let i = 0; i < papers.length; i++) {
   for (let j = i + 1; j < papers.length; j++) {
     const shared = papers[i].tags.filter(t => !ORGANISM_TAGS.has(t) && papers[j].tags.includes(t));
-    if (shared.length >= 2) {
+    if (shared.length >= 1) {
       // color by the rarest shared theme (most specific)
       const theme = shared.slice().sort((a, b) => (tagFreq[a] || 0) - (tagFreq[b] || 0))[0];
       links.push({ source: papers[i].id, target: papers[j].id, theme });
