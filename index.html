@@ -317,7 +317,7 @@
       gap: 0.8rem;
     }
 
-    #people-link {
+    .page-nav-link {
       background: none;
       border: 1px solid #555;
       color: #bbb;
@@ -329,7 +329,7 @@
       display: inline-block;
     }
 
-    #people-link:hover {
+    .page-nav-link:hover {
       border-color: #999;
       color: #fff;
     }
@@ -380,7 +380,7 @@
 
     #zoom-controls {
       position: fixed;
-      top: 7.5rem;
+      top: 6.5rem;
       left: 2.5rem;
       z-index: 5;
       display: flex;
@@ -393,34 +393,10 @@
       top: 0;
       left: 0;
       width: 420px;
-      height: 10rem;
+      height: 9rem;
       background: rgba(0, 0, 0, 0.82);
       z-index: 2;
       pointer-events: none;
-    }
-
-    #creative-nav {
-      position: fixed;
-      top: 5.5rem;
-      left: 2.5rem;
-      z-index: 10;
-    }
-
-    .creative-nav-link {
-      display: inline-block;
-      background: none;
-      border: 1px solid #333;
-      color: #444;
-      font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
-      font-size: 0.58rem;
-      letter-spacing: 0.05em;
-      padding: 5px 10px;
-      text-decoration: none;
-    }
-
-    .creative-nav-link:hover {
-      color: #bbb;
-      border-color: #666;
     }
 
     #ui-shield-right {
@@ -477,15 +453,13 @@
 <div id="list-view"></div>
 <div id="legend"></div>
 <div id="page-nav">
-  <a id="people-link" href="people.html">people</a>
+  <a class="page-nav-link" href="people.html">people</a>
+  <a class="page-nav-link" href="https://total-ecology.net">creative inquiry</a>
 </div>
 <div id="view-tabs">
   <span class="view-label">research:</span>
   <button class="view-tab active" id="tab-network">network</button>
   <button class="view-tab" id="tab-list">list</button>
-</div>
-<div id="creative-nav">
-  <a class="creative-nav-link" href="https://total-ecology.net">creative inquiry</a>
 </div>
 <div id="zoom-controls">
   <button class="zoom-btn" id="zoom-out">&#8722;</button>
@@ -1110,7 +1084,7 @@ const CARD_W = 220;
 const CARD_H = 85;
 const CARD_R = Math.sqrt((CARD_W / 2) ** 2 + (CARD_H / 2) ** 2) + 10;
 const SHIELD_L_W = 420;   // left shield width (px) — must match CSS
-const SHIELD_L_H = 160;   // left shield height (10rem at 16px)
+const SHIELD_L_H = 144;   // left shield height (9rem at 16px)
 const SHIELD_R_W = 280;   // right shield width — must match CSS
 const SHIELD_R_H = 70;    // right shield height — must match CSS
 
