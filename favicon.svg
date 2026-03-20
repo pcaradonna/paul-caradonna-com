@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" shape-rendering="crispEdges">
+  <!-- black background -->
+  <rect width="32" height="32" fill="#000"/>
+  <!-- 5 petals, each an ellipse offset above center, rotated 72° apart -->
+  <ellipse cx="16" cy="8" rx="4.5" ry="7" fill="#d8d8d8" transform="rotate(0,   16, 16)"/>
+  <ellipse cx="16" cy="8" rx="4.5" ry="7" fill="#d8d8d8" transform="rotate(72,  16, 16)"/>
+  <ellipse cx="16" cy="8" rx="4.5" ry="7" fill="#d8d8d8" transform="rotate(144, 16, 16)"/>
+  <ellipse cx="16" cy="8" rx="4.5" ry="7" fill="#d8d8d8" transform="rotate(216, 16, 16)"/>
+  <ellipse cx="16" cy="8" rx="4.5" ry="7" fill="#d8d8d8" transform="rotate(288, 16, 16)"/>
+  <!-- yellow center -->
+  <circle cx="16" cy="16" r="5" fill="#e8a838"/>
+  <!-- center detail -->
+  <circle cx="16" cy="16" r="2.5" fill="#c47820"/>
+</svg>
