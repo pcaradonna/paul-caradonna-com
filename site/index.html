@@ -334,24 +334,38 @@
       color: #fff;
     }
 
-    #view-toggle {
+    #view-tabs {
       position: fixed;
       top: 4rem;
       left: 2.5rem;
       z-index: 10;
+      display: flex;
+    }
+
+    .view-tab {
       background: none;
       border: 1px solid #333;
-      color: #888;
+      color: #444;
       font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
       font-size: 0.58rem;
       letter-spacing: 0.05em;
       padding: 5px 10px;
       cursor: pointer;
+      margin-right: -1px;
     }
 
-    #view-toggle:hover {
-      border-color: #999;
+    .view-tab:hover {
+      color: #bbb;
+      border-color: #666;
+      position: relative;
+      z-index: 1;
+    }
+
+    .view-tab.active {
       color: #fff;
+      border-color: #888;
+      position: relative;
+      z-index: 1;
     }
 
     #zoom-controls {
@@ -408,7 +422,10 @@
 <div id="page-nav">
   <a id="people-link" href="people.html">people</a>
 </div>
-<button id="view-toggle">&#9776; list</button>
+<div id="view-tabs">
+  <button class="view-tab active" id="tab-network">network</button>
+  <button class="view-tab" id="tab-list">list</button>
+</div>
 <div id="zoom-controls">
   <button class="zoom-btn" id="zoom-out">&#8722;</button>
   <button class="zoom-btn" id="zoom-in">+</button>
@@ -1329,29 +1346,32 @@ document.addEventListener('click', () => {
   document.getElementById('list-view').innerHTML = html;
 })();
 
-let isListView = false;
-const viewToggleBtn = document.getElementById('view-toggle');
+const tabNetwork = document.getElementById('tab-network');
+const tabList = document.getElementById('tab-list');
 const zoomControls = document.getElementById('zoom-controls');
 
-viewToggleBtn.addEventListener('click', e => {
-  e.stopPropagation();
-  isListView = !isListView;
-  if (isListView) {
-    document.getElementById('lines').style.display = 'none';
-    document.getElementById('cards').style.display = 'none';
-    document.getElementById('legend').style.display = 'none';
-    zoomControls.style.display = 'none';
-    document.getElementById('list-view').style.display = 'block';
-    viewToggleBtn.textContent = '\u29C6 network';
-  } else {
-    document.getElementById('lines').style.display = '';
-    document.getElementById('cards').style.display = '';
-    document.getElementById('legend').style.display = '';
-    zoomControls.style.display = '';
-    document.getElementById('list-view').style.display = 'none';
-    viewToggleBtn.textContent = '\u2630 list';
-  }
-});
+function showNetwork() {
+  document.getElementById('lines').style.display = '';
+  document.getElementById('cards').style.display = '';
+  document.getElementById('legend').style.display = '';
+  zoomControls.style.display = '';
+  document.getElementById('list-view').style.display = 'none';
+  tabNetwork.classList.add('active');
+  tabList.classList.remove('active');
+}
+
+function showList() {
+  document.getElementById('lines').style.display = 'none';
+  document.getElementById('cards').style.display = 'none';
+  document.getElementById('legend').style.display = 'none';
+  zoomControls.style.display = 'none';
+  document.getElementById('list-view').style.display = 'block';
+  tabList.classList.add('active');
+  tabNetwork.classList.remove('active');
+}
+
+tabNetwork.addEventListener('click', e => { e.stopPropagation(); showNetwork(); });
+tabList.addEventListener('click', e => { e.stopPropagation(); showList(); });
 
 // ── RESIZE ───────────────────────────────────────────────────────────────────
 window.addEventListener('resize', () => {
