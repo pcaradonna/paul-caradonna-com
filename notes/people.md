@@ -65,6 +65,14 @@ contact: orlylindner2026@u.northwestern.edu
 
 ---
 
+name: Emma Dawson-Glass
+role: PhD Candidate
+institution: University of Michigan (Nate Sanders Lab)/Chicago Botanic Garden
+research: ecological interactions; pollination ecology; nutritional ecology; predation; phenology
+contact: emmahdg@umich.edu
+
+---
+
 name: Mark Dorf
 role: Artist
 institution: Electronic Image (NYC)/Rocky Mountain Biological Laboratory
