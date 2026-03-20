@@ -1,14 +1,36 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" shape-rendering="crispEdges">
-  <!-- black background -->
   <rect width="32" height="32" fill="#000"/>
-  <!-- 5 petals, each an ellipse offset above center, rotated 72° apart -->
-  <ellipse cx="16" cy="8" rx="4.5" ry="7" fill="#d8d8d8" transform="rotate(0,   16, 16)"/>
-  <ellipse cx="16" cy="8" rx="4.5" ry="7" fill="#d8d8d8" transform="rotate(72,  16, 16)"/>
-  <ellipse cx="16" cy="8" rx="4.5" ry="7" fill="#d8d8d8" transform="rotate(144, 16, 16)"/>
-  <ellipse cx="16" cy="8" rx="4.5" ry="7" fill="#d8d8d8" transform="rotate(216, 16, 16)"/>
-  <ellipse cx="16" cy="8" rx="4.5" ry="7" fill="#d8d8d8" transform="rotate(288, 16, 16)"/>
-  <!-- yellow center -->
-  <circle cx="16" cy="16" r="5" fill="#e8a838"/>
-  <!-- center detail -->
-  <circle cx="16" cy="16" r="2.5" fill="#c47820"/>
+
+  <!-- Each visible "pixel block" = 2×2 units in this 32×32 SVG -->
+  <!-- Pixel grid is 16×16 logical pixels                        -->
+
+  <!-- top petal: 2 wide × 2 tall, centered (cols 7–8, rows 0–1) -->
+  <rect x="12" y="0"  width="4"  height="4"  fill="#e0e0e0"/>
+
+  <!-- top petal shoulder: 4 wide × 1 tall (cols 6–9, row 2) -->
+  <rect x="10" y="4"  width="8"  height="2"  fill="#e0e0e0"/>
+
+  <!-- left + right wings: 9 wide × 2 tall (cols 3–11, rows 3–4) -->
+  <rect x="4"  y="6"  width="22" height="4"  fill="#e0e0e0"/>
+
+  <!-- lower shoulder: 4 wide × 1 tall (cols 6–9, row 5) -->
+  <rect x="10" y="10" width="8"  height="2"  fill="#e0e0e0"/>
+
+  <!-- neck / upper stem: 2 wide × 2 tall (cols 7–8, rows 6–7) -->
+  <rect x="12" y="12" width="4"  height="4"  fill="#e0e0e0"/>
+
+  <!-- left leaf:  2 wide × 3 tall (cols 4–5, rows 8–10) -->
+  <rect x="6"  y="16" width="4"  height="6"  fill="#e0e0e0"/>
+
+  <!-- stem (leaf section): 2 wide × 3 tall (cols 7–8, rows 8–10) -->
+  <rect x="12" y="16" width="4"  height="6"  fill="#e0e0e0"/>
+
+  <!-- right leaf: 2 wide × 3 tall (cols 10–11, rows 8–10) -->
+  <rect x="18" y="16" width="4"  height="6"  fill="#e0e0e0"/>
+
+  <!-- lower stem: 2 wide × 2 tall (cols 7–8, rows 11–12) -->
+  <rect x="12" y="22" width="4"  height="4"  fill="#e0e0e0"/>
+
+  <!-- base: 4 wide × 2 tall (cols 6–9, rows 13–14) -->
+  <rect x="10" y="26" width="8"  height="4"  fill="#e0e0e0"/>
 </svg>
