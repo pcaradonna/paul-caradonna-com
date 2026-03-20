@@ -66,7 +66,7 @@
     }
 
     main {
-      padding: 7rem 2.5rem 4rem;
+      padding: 7rem 2.5rem 5rem;
       max-width: 860px;
     }
 
@@ -94,10 +94,9 @@
       width: 90px;
       height: 90px;
       flex-shrink: 0;
-      background: #111;
-      border: 1px solid #1e1e1e;
       object-fit: cover;
       display: block;
+      filter: grayscale(100%);
     }
 
     .person-image-placeholder {
@@ -116,21 +115,21 @@
       font-size: 0.85rem;
       color: #e8e8e8;
       letter-spacing: 0.01em;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.25rem;
     }
 
     .person-role {
-      font-size: 0.62rem;
-      color: #555;
+      font-size: 0.6rem;
+      color: #444;
       letter-spacing: 0.04em;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.25rem;
     }
 
-    .person-description {
-      font-size: 0.68rem;
-      color: #888;
-      line-height: 1.65;
-      max-width: 520px;
+    .person-institution {
+      font-size: 0.58rem;
+      color: #2e2e2e;
+      letter-spacing: 0.02em;
+      line-height: 1.6;
       margin-bottom: 0.85rem;
     }
 
@@ -138,6 +137,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 5px;
+      margin-bottom: 0.75rem;
     }
 
     .keyword {
@@ -146,6 +146,20 @@
       color: #444;
       border: 1px solid #1e1e1e;
       padding: 2px 7px;
+    }
+
+    .person-contact {
+      font-size: 0.56rem;
+      letter-spacing: 0.02em;
+    }
+
+    .person-contact a {
+      color: #2a2a2a;
+      text-decoration: none;
+    }
+
+    .person-contact a:hover {
+      color: #777;
     }
 
     footer {
@@ -173,22 +187,112 @@
   </nav>
 
   <main>
-    <p class="page-heading">People</p>
+    <p class="page-heading">Research Group</p>
 
     <div class="person">
       <div class="person-image-placeholder"></div>
       <div class="person-info">
-        <div class="person-name">Paul CaraDonna</div>
-        <div class="person-role">Principal Investigator &nbsp;&middot;&nbsp; Northwestern University / Chicago Botanic Garden</div>
-        <div class="person-description">Ecologist studying plant-pollinator interactions, phenology, and community ecology across mountain and urban systems.</div>
+        <div class="person-name">Paul J. CaraDonna</div>
+        <div class="person-role">Principal Investigator</div>
+        <div class="person-institution">Chicago Botanic Garden &middot; Northwestern University &middot; Rocky Mountain Biological Laboratory &middot; National Institute for Mathematics in Biology &middot; Catalina Industries</div>
         <div class="person-keywords">
-          <span class="keyword">pollination</span>
-          <span class="keyword">phenology</span>
-          <span class="keyword">ecological networks</span>
-          <span class="keyword">alpine ecology</span>
-          <span class="keyword">urban ecology</span>
-          <span class="keyword">bumble bees</span>
+          <span class="keyword">population &amp; community ecology</span>
+          <span class="keyword">ecological interactions</span>
+          <span class="keyword">creative inquiry</span>
+          <span class="keyword">plants &amp; animals</span>
+          <span class="keyword">environmental change</span>
         </div>
+        <div class="person-contact"><a href="mailto:pcaradonna@chicagobotanic.org">pcaradonna@chicagobotanic.org</a></div>
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="person-image-placeholder"></div>
+      <div class="person-info">
+        <div class="person-name">Nick N. Dorian</div>
+        <div class="person-role">Postdoctoral Associate</div>
+        <div class="person-institution">Chicago Botanic Garden &middot; Catalina Industries</div>
+        <div class="person-keywords">
+          <span class="keyword">population ecology</span>
+          <span class="keyword">ecology of pollinator gardens</span>
+          <span class="keyword">pollinators</span>
+          <span class="keyword">creative inquiry</span>
+        </div>
+        <div class="person-contact"><a href="mailto:ndorian@chicagobotanic.org">ndorian@chicagobotanic.org</a></div>
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="person-image-placeholder"></div>
+      <div class="person-info">
+        <div class="person-name">Dylan T. Simpson</div>
+        <div class="person-role">Postdoctoral Associate</div>
+        <div class="person-institution">Chicago Botanic Garden &middot; Rocky Mountain Biological Laboratory &middot; Catalina Industries</div>
+        <div class="person-keywords">
+          <span class="keyword">population ecology</span>
+          <span class="keyword">species interactions</span>
+          <span class="keyword">pollinators</span>
+          <span class="keyword">environmental change</span>
+          <span class="keyword">creative inquiry</span>
+        </div>
+        <div class="person-contact"><a href="mailto:dsimpson@chicagobotanic.org">dsimpson@chicagobotanic.org</a></div>
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="person-image-placeholder"></div>
+      <div class="person-info">
+        <div class="person-name">Ceci Rigby</div>
+        <div class="person-role">MSc. Student</div>
+        <div class="person-institution">Chicago Botanic Garden &middot; Northwestern University &middot; Rocky Mountain Biological Laboratory</div>
+        <div class="person-keywords">
+          <span class="keyword">species interactions</span>
+          <span class="keyword">diet theory</span>
+          <span class="keyword">pollinators</span>
+          <span class="keyword">creative inquiry</span>
+        </div>
+        <div class="person-contact"><a href="mailto:catherinerigby2027@u.northwestern.edu">catherinerigby2027@u.northwestern.edu</a></div>
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="person-image-placeholder"></div>
+      <div class="person-info">
+        <div class="person-name">Caroline Smith</div>
+        <div class="person-role">MSc. Student</div>
+        <div class="person-institution">Chicago Botanic Garden &middot; Northwestern University</div>
+        <div class="person-keywords">
+          <span class="keyword">ecology of pollinator gardens</span>
+        </div>
+        <div class="person-contact"><a href="mailto:carolinesmith2028@u.northwestern.edu">carolinesmith2028@u.northwestern.edu</a></div>
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="person-image-placeholder"></div>
+      <div class="person-info">
+        <div class="person-name">Orly Lindner</div>
+        <div class="person-role">MSc. Student</div>
+        <div class="person-institution">Chicago Botanic Garden &middot; Northwestern University &middot; Rocky Mountain Biological Laboratory</div>
+        <div class="person-keywords">
+          <span class="keyword">phenology</span>
+          <span class="keyword">pollinator ecology</span>
+        </div>
+        <div class="person-contact"><a href="mailto:orlylindner2026@u.northwestern.edu">orlylindner2026@u.northwestern.edu</a></div>
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="person-image-placeholder"></div>
+      <div class="person-info">
+        <div class="person-name">Mark Dorf</div>
+        <div class="person-role">Artist</div>
+        <div class="person-institution">Electronic Image (NYC) &middot; Rocky Mountain Biological Laboratory</div>
+        <div class="person-keywords">
+          <span class="keyword">creative inquiry</span>
+          <span class="keyword">nature-human-technology relations</span>
+        </div>
+        <div class="person-contact"><a href="mailto:mark@mdorf.com">mark@mdorf.com</a></div>
       </div>
     </div>
 
