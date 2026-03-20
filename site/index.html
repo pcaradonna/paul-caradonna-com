@@ -380,19 +380,18 @@
 
     #zoom-controls {
       position: fixed;
-      bottom: 1.4rem;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 6.5rem;
+      left: 2.5rem;
       z-index: 5;
       display: flex;
-      gap: 6px;
+      gap: 4px;
       align-items: center;
     }
 
     .zoom-btn {
       background: none;
-      border: 1px solid #222;
-      color: #444;
+      border: 1px solid #444;
+      color: #888;
       font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
       font-size: 1rem;
       width: 26px;
@@ -906,10 +905,10 @@ const papers = [
   {
     id: 44,
     title: "Nutrient niche dynamics among wild pollinators",
-    short: "CaraDonna et al.",
+    short: "Bain, Petry, Ogilvie, CaraDonna",
     year: 2025,
     journal: "Proceedings of the Royal Society B",
-    citation: "CaraDonna, P.J., et al. Nutrient niche dynamics among wild pollinators. Proceedings of the Royal Society B.",
+    citation: "Bain, J.A., W.K. Petry, J.E. Ogilvie, P.J. CaraDonna. Nutrient niche dynamics among wild pollinators. Proceedings of the Royal Society B.",
     doi: "https://doi.org/10.1098/rspb.2025.0643",
     tags: []
   },
@@ -1086,10 +1085,10 @@ const GRID_COLS = 7;
 const GRID_ROWS = Math.ceil(papers.length / GRID_COLS);
 
 function gridTarget(i, w, h) {
-  const marginX = w * 0.08;
-  const marginY = h * 0.14;
-  const cellW = (w * 0.84) / GRID_COLS;
-  const cellH = (h * 0.72) / GRID_ROWS;
+  const marginX = w * 0.13;
+  const marginY = h * 0.22;
+  const cellW = (w * 0.74) / GRID_COLS;
+  const cellH = (h * 0.62) / GRID_ROWS;
   return {
     tx: marginX + (i % GRID_COLS + 0.5) * cellW,
     ty: marginY + (Math.floor(i / GRID_COLS) + 0.5) * cellH
@@ -1127,7 +1126,9 @@ const simulation = d3.forceSimulation(nodes)
   .force('y', d3.forceY(d => d.ty).strength(0.06))
   .force('collide', d3.forceCollide(CARD_R).strength(0.7))
   .alphaDecay(0.04)
-  .velocityDecay(0.85)
+  .alphaMin(0.001)
+  .alphaTarget(0.012)
+  .velocityDecay(0.88)
   .on('tick', tick);
 
 function updatePositions() {
