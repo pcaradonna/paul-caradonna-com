@@ -401,6 +401,19 @@
       pointer-events: none;
     }
 
+    #ui-shield-right {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 280px;
+      height: 70px;
+      background: #000;
+      border-left: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+      z-index: 2;
+      pointer-events: none;
+    }
+
     .zoom-btn {
       background: none;
       border: 1px solid #444;
@@ -426,6 +439,7 @@
 <body>
 
 <div id="ui-shield"></div>
+<div id="ui-shield-right"></div>
 <header>
   <h1 class="site-title">The Research Group of Paul J. CaraDonna</h1>
 </header>
@@ -1072,6 +1086,10 @@ for (let i = 0; i < papers.length; i++) {
 const CARD_W = 220;
 const CARD_H = 85;
 const CARD_R = Math.sqrt((CARD_W / 2) ** 2 + (CARD_H / 2) ** 2) + 10;
+const SHIELD_L_W = 420;   // left shield width (px) — must match CSS
+const SHIELD_L_H = 144;   // left shield height (9rem at 16px)
+const SHIELD_R_W = 280;   // right shield width — must match CSS
+const SHIELD_R_H = 70;    // right shield height — must match CSS
 
 let W = window.innerWidth;
 let H = window.innerHeight;
@@ -1099,13 +1117,17 @@ const GRID_COLS = 7;
 const GRID_ROWS = Math.ceil(papers.length / GRID_COLS);
 
 function gridTarget(i, w, h) {
-  const marginX = w * 0.13;
-  const marginY = h * 0.22;
-  const cellW = (w * 0.74) / GRID_COLS;
-  const cellH = (h * 0.62) / GRID_ROWS;
+  const leftMargin  = SHIELD_L_W + 30;
+  const rightMargin = SHIELD_R_W + 30;
+  const topMargin   = SHIELD_L_H + 30;
+  const botMargin   = h * 0.10;
+  const availW = w - leftMargin - rightMargin;
+  const availH = h - topMargin - botMargin;
+  const cellW = availW / GRID_COLS;
+  const cellH = availH / GRID_ROWS;
   return {
-    tx: marginX + (i % GRID_COLS + 0.5) * cellW,
-    ty: marginY + (Math.floor(i / GRID_COLS) + 0.5) * cellH
+    tx: leftMargin + (i % GRID_COLS + 0.5) * cellW,
+    ty: topMargin  + (Math.floor(i / GRID_COLS) + 0.5) * cellH
   };
 }
 
@@ -1140,15 +1162,20 @@ const simulation = d3.forceSimulation(nodes)
   .force('y', d3.forceY(d => d.ty).strength(0.06))
   .force('collide', d3.forceCollide(CARD_R).strength(0.7))
   .force('avoidUI', alpha => {
-    // Keep nodes clear of the upper-left UI zone
-    const clearX = W * 0.32;
-    const clearY = H * 0.36;
     for (const n of nodes) {
-      if (n.x < clearX && n.y < clearY) {
-        const toRight = clearX - n.x;
-        const toDown  = clearY - n.y;
-        if (toRight < toDown) { n.vx += toRight * 0.12 * alpha; }
-        else                  { n.vy += toDown  * 0.12 * alpha; }
+      // Left shield: card top-left at (n.x, n.y), extends to (n.x+CARD_W, n.y+CARD_H)
+      if (n.x < SHIELD_L_W && n.y < SHIELD_L_H) {
+        const dx = SHIELD_L_W - n.x;
+        const dy = SHIELD_L_H - n.y;
+        if (dx < dy) { n.vx += dx * 1.2 * alpha; }
+        else          { n.vy += dy * 1.2 * alpha; }
+      }
+      // Right shield: card right edge at n.x + CARD_W
+      if ((n.x + CARD_W) > (W - SHIELD_R_W) && n.y < SHIELD_R_H) {
+        const dx = (n.x + CARD_W) - (W - SHIELD_R_W);
+        const dy = SHIELD_R_H - n.y;
+        if (dx < dy) { n.vx -= dx * 1.2 * alpha; }
+        else          { n.vy += dy * 1.2 * alpha; }
       }
     }
   })
