@@ -255,7 +255,7 @@
 
     #list-view {
       position: fixed;
-      top: 3.5rem;
+      top: 7rem;
       left: 0;
       right: 0;
       bottom: 0;
@@ -340,6 +340,16 @@
       left: 2.5rem;
       z-index: 10;
       display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .view-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.05em;
+      color: #555;
+      margin-right: 0.7rem;
+      font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
     }
 
     .view-tab {
@@ -423,6 +433,7 @@
   <a id="people-link" href="people.html">people</a>
 </div>
 <div id="view-tabs">
+  <span class="view-label">research:</span>
   <button class="view-tab active" id="tab-network">network</button>
   <button class="view-tab" id="tab-list">list</button>
 </div>
@@ -1071,11 +1082,24 @@ const lineEls = svgGroup.selectAll('line')
   .attr('stroke-width', 1);
 
 // ── CARDS ─────────────────────────────────────────────────────────────────────
-const nodes = papers.map(p => ({
-  ...p,
-  x: W / 2 + (Math.random() - 0.5) * W * 0.7,
-  y: H * 0.55 + (Math.random() - 0.5) * H * 0.5
-}));
+const GRID_COLS = 7;
+const GRID_ROWS = Math.ceil(papers.length / GRID_COLS);
+
+function gridTarget(i, w, h) {
+  const marginX = w * 0.08;
+  const marginY = h * 0.14;
+  const cellW = (w * 0.84) / GRID_COLS;
+  const cellH = (h * 0.72) / GRID_ROWS;
+  return {
+    tx: marginX + (i % GRID_COLS + 0.5) * cellW,
+    ty: marginY + (Math.floor(i / GRID_COLS) + 0.5) * cellH
+  };
+}
+
+const nodes = papers.map((p, i) => {
+  const { tx, ty } = gridTarget(i, W, H);
+  return { ...p, x: tx + (Math.random() - 0.5) * 80, y: ty + (Math.random() - 0.5) * 80, tx, ty };
+});
 
 const cardsContainer = document.getElementById('cards');
 
@@ -1097,10 +1121,10 @@ const cardEls = nodes.map((node, i) => {
 
 // ── SIMULATION ───────────────────────────────────────────────────────────────
 const simulation = d3.forceSimulation(nodes)
-  .force('link', d3.forceLink(links).id(d => d.id).distance(420).strength(0.08))
-  .force('charge', d3.forceManyBody().strength(-600))
-  .force('center', d3.forceCenter(W / 2, H * 0.58).strength(0.02))
-  .force('yBias', d3.forceY(H * 0.6).strength(0.015))
+  .force('link', d3.forceLink(links).id(d => d.id).distance(300).strength(0.06))
+  .force('charge', d3.forceManyBody().strength(-800))
+  .force('x', d3.forceX(d => d.tx).strength(0.06))
+  .force('y', d3.forceY(d => d.ty).strength(0.06))
   .force('collide', d3.forceCollide(CARD_R).strength(0.7))
   .alphaDecay(0.04)
   .velocityDecay(0.85)
@@ -1378,7 +1402,9 @@ window.addEventListener('resize', () => {
   W = window.innerWidth;
   H = window.innerHeight;
   svg.attr('width', W).attr('height', H);
-  simulation.force('center', d3.forceCenter(W / 2, H * 0.58).strength(0.02));
+  nodes.forEach((n, i) => { const t = gridTarget(i, W, H); n.tx = t.tx; n.ty = t.ty; });
+  simulation.force('x', d3.forceX(d => d.tx).strength(0.06));
+  simulation.force('y', d3.forceY(d => d.ty).strength(0.06));
   simulation.alpha(0.3).restart();
 });
 </script>
