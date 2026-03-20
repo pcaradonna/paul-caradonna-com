@@ -1161,21 +1161,22 @@ const simulation = d3.forceSimulation(nodes)
   .force('x', d3.forceX(d => d.tx).strength(0.06))
   .force('y', d3.forceY(d => d.ty).strength(0.06))
   .force('collide', d3.forceCollide(CARD_R).strength(0.7))
-  .force('avoidUI', alpha => {
+  .force('avoidUI', () => {
+    // Hard-wall repulsion — NOT scaled by alpha so it works at steady state too
     for (const n of nodes) {
-      // Left shield: card top-left at (n.x, n.y), extends to (n.x+CARD_W, n.y+CARD_H)
+      // Left shield: card top-left at (n.x, n.y)
       if (n.x < SHIELD_L_W && n.y < SHIELD_L_H) {
         const dx = SHIELD_L_W - n.x;
         const dy = SHIELD_L_H - n.y;
-        if (dx < dy) { n.vx += dx * 1.2 * alpha; }
-        else          { n.vy += dy * 1.2 * alpha; }
+        if (dx < dy) { n.vx = Math.max(n.vx, dx * 0.12); }
+        else          { n.vy = Math.max(n.vy, dy * 0.12); }
       }
       // Right shield: card right edge at n.x + CARD_W
       if ((n.x + CARD_W) > (W - SHIELD_R_W) && n.y < SHIELD_R_H) {
         const dx = (n.x + CARD_W) - (W - SHIELD_R_W);
         const dy = SHIELD_R_H - n.y;
-        if (dx < dy) { n.vx -= dx * 1.2 * alpha; }
-        else          { n.vy += dy * 1.2 * alpha; }
+        if (dx < dy) { n.vx = Math.min(n.vx, -dx * 0.12); }
+        else          { n.vy = Math.max(n.vy, dy * 0.12); }
       }
     }
   })
