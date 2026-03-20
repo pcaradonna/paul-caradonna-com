@@ -388,6 +388,19 @@
       align-items: center;
     }
 
+    #ui-shield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 420px;
+      height: 9rem;
+      background: #000;
+      border-right: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+      z-index: 2;
+      pointer-events: none;
+    }
+
     .zoom-btn {
       background: none;
       border: 1px solid #444;
@@ -412,6 +425,7 @@
 </head>
 <body>
 
+<div id="ui-shield"></div>
 <header>
   <h1 class="site-title">The Research Group of Paul J. CaraDonna</h1>
 </header>
