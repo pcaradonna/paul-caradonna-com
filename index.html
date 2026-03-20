@@ -1125,9 +1125,22 @@ const simulation = d3.forceSimulation(nodes)
   .force('x', d3.forceX(d => d.tx).strength(0.06))
   .force('y', d3.forceY(d => d.ty).strength(0.06))
   .force('collide', d3.forceCollide(CARD_R).strength(0.7))
+  .force('avoidUI', alpha => {
+    // Keep nodes clear of the upper-left UI zone
+    const clearX = W * 0.32;
+    const clearY = H * 0.36;
+    for (const n of nodes) {
+      if (n.x < clearX && n.y < clearY) {
+        const toRight = clearX - n.x;
+        const toDown  = clearY - n.y;
+        if (toRight < toDown) { n.vx += toRight * 0.12 * alpha; }
+        else                  { n.vy += toDown  * 0.12 * alpha; }
+      }
+    }
+  })
   .alphaDecay(0.04)
   .alphaMin(0.001)
-  .alphaTarget(0.012)
+  .alphaTarget(0.008)
   .velocityDecay(0.88)
   .on('tick', tick);
 
