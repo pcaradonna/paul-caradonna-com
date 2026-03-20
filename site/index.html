@@ -307,14 +307,20 @@
       color: #999;
     }
 
-    #people-link {
+    /* Right-side page navigation */
+    #page-nav {
       position: fixed;
       top: 1.5rem;
-      right: 10rem;
+      right: 2.2rem;
       z-index: 10;
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    #people-link {
       background: none;
-      border: 1px solid #222;
-      color: #555;
+      border: 1px solid #555;
+      color: #bbb;
       font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
       font-size: 0.58rem;
       letter-spacing: 0.05em;
@@ -330,12 +336,12 @@
 
     #view-toggle {
       position: fixed;
-      top: 1.5rem;
-      right: 2.2rem;
+      top: 4rem;
+      left: 2.5rem;
       z-index: 10;
       background: none;
-      border: 1px solid #555;
-      color: #bbb;
+      border: 1px solid #333;
+      color: #888;
       font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
       font-size: 0.58rem;
       letter-spacing: 0.05em;
@@ -399,7 +405,9 @@
 
 <div id="list-view"></div>
 <div id="legend"></div>
-<a id="people-link" href="people.html">people</a>
+<div id="page-nav">
+  <a id="people-link" href="people.html">people</a>
+</div>
 <button id="view-toggle">&#9776; list</button>
 <div id="zoom-controls">
   <button class="zoom-btn" id="zoom-out">&#8722;</button>
