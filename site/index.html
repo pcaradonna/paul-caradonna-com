@@ -307,6 +307,27 @@
       color: #999;
     }
 
+    #people-link {
+      position: fixed;
+      top: 1.5rem;
+      right: 10rem;
+      z-index: 10;
+      background: none;
+      border: 1px solid #222;
+      color: #555;
+      font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.05em;
+      padding: 5px 10px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    #people-link:hover {
+      border-color: #999;
+      color: #fff;
+    }
+
     #view-toggle {
       position: fixed;
       top: 1.5rem;
@@ -378,6 +399,7 @@
 
 <div id="list-view"></div>
 <div id="legend"></div>
+<a id="people-link" href="people.html">people</a>
 <button id="view-toggle">&#9776; list</button>
 <div id="zoom-controls">
   <button class="zoom-btn" id="zoom-out">&#8722;</button>

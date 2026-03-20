@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>People — Paul CaraDonna</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      min-height: 100%;
+      background: #000;
+      color: #fff;
+      font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+    }
+
+    header {
+      position: fixed;
+      top: 2rem;
+      left: 2.5rem;
+      z-index: 5;
+    }
+
+    .site-title {
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .site-title:hover {
+      color: #aaa;
+    }
+
+    nav {
+      position: fixed;
+      top: 1.5rem;
+      right: 2.2rem;
+      z-index: 5;
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    .nav-link {
+      font-size: 0.58rem;
+      letter-spacing: 0.05em;
+      color: #555;
+      text-decoration: none;
+      border: 1px solid #222;
+      padding: 5px 10px;
+    }
+
+    .nav-link:hover {
+      color: #fff;
+      border-color: #999;
+    }
+
+    .nav-link.active {
+      color: #bbb;
+      border-color: #555;
+    }
+
+    main {
+      padding: 7rem 2.5rem 4rem;
+      max-width: 860px;
+    }
+
+    .page-heading {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #333;
+      margin-bottom: 3rem;
+    }
+
+    .person {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2.8rem;
+      padding-bottom: 2.8rem;
+      border-bottom: 1px solid #111;
+    }
+
+    .person:last-child {
+      border-bottom: none;
+    }
+
+    .person-image {
+      width: 90px;
+      height: 90px;
+      flex-shrink: 0;
+      background: #111;
+      border: 1px solid #1e1e1e;
+      object-fit: cover;
+      display: block;
+    }
+
+    .person-image-placeholder {
+      width: 90px;
+      height: 90px;
+      flex-shrink: 0;
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+    }
+
+    .person-info {
+      flex: 1;
+    }
+
+    .person-name {
+      font-size: 0.85rem;
+      color: #e8e8e8;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.3rem;
+    }
+
+    .person-role {
+      font-size: 0.62rem;
+      color: #555;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.8rem;
+    }
+
+    .person-description {
+      font-size: 0.68rem;
+      color: #888;
+      line-height: 1.65;
+      max-width: 520px;
+      margin-bottom: 0.85rem;
+    }
+
+    .person-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .keyword {
+      font-size: 0.56rem;
+      letter-spacing: 0.04em;
+      color: #444;
+      border: 1px solid #1e1e1e;
+      padding: 2px 7px;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 1.6rem;
+      right: 2.2rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.65rem;
+      color: #2e2e2e;
+      z-index: 5;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="site-title">Paul CaraDonna</a>
+  </header>
+
+  <nav>
+    <a href="index.html" class="nav-link">publications</a>
+    <a href="people.html" class="nav-link active">people</a>
+  </nav>
+
+  <main>
+    <p class="page-heading">People</p>
+
+    <div class="person">
+      <div class="person-image-placeholder"></div>
+      <div class="person-info">
+        <div class="person-name">Paul CaraDonna</div>
+        <div class="person-role">Principal Investigator &nbsp;&middot;&nbsp; Northwestern University / Chicago Botanic Garden</div>
+        <div class="person-description">Ecologist studying plant-pollinator interactions, phenology, and community ecology across mountain and urban systems.</div>
+        <div class="person-keywords">
+          <span class="keyword">pollination</span>
+          <span class="keyword">phenology</span>
+          <span class="keyword">ecological networks</span>
+          <span class="keyword">alpine ecology</span>
+          <span class="keyword">urban ecology</span>
+          <span class="keyword">bumble bees</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>paul-caradonna.com</footer>
+
+</body>
+</html>
