@@ -295,6 +295,12 @@
       line-height: 1.6;
     }
 
+    .list-journal {
+      font-size: 0.58rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
     .list-doi {
       display: inline-block;
       margin-top: 2px;
@@ -1414,7 +1420,8 @@ document.addEventListener('click', () => {
     byYear[y].forEach(p => {
       html += '<div class="list-paper">' +
         '<div class="list-title">' + p.title + '</div>' +
-        '<div class="list-citation">' + p.citation + '</div>' +
+        '<div class="list-citation">' + p.short + ' &middot; ' + p.year + '</div>' +
+        '<div class="list-journal">' + p.journal + '</div>' +
         (p.doi ? '<a class="list-doi" href="' + p.doi + '" target="_blank" rel="noopener">' + p.doi + '</a>' : '') +
         '</div>';
     });
