@@ -73,6 +73,14 @@ contact: emmahdg@umich.edu
 
 ---
 
+name: Emma Coflin
+role: MSc. Student (starting fall 2026)
+institution: Chicago Botanic Garden
+research: ecology of pollinator gardens; ecology in urban environments
+contact: ---
+
+---
+
 name: Mark Dorf
 role: Artist
 institution: Electronic Image (NYC)/Rocky Mountain Biological Laboratory
