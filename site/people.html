@@ -33,9 +33,7 @@
       text-decoration: none;
     }
 
-    .site-title:hover {
-      color: #aaa;
-    }
+    .site-title:hover { color: #aaa; }
 
     nav {
       position: fixed;
@@ -47,23 +45,20 @@
     }
 
     .nav-link {
+      background: none;
+      border: 1px solid #555;
+      color: #bbb;
+      font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
       font-size: 0.58rem;
       letter-spacing: 0.05em;
-      color: #555;
-      text-decoration: none;
-      border: 1px solid #222;
       padding: 5px 10px;
+      text-decoration: none;
+      display: inline-block;
     }
 
-    .nav-link:hover {
-      color: #fff;
-      border-color: #999;
-    }
+    .nav-link:hover { border-color: #999; color: #fff; }
 
-    .nav-link.active {
-      color: #bbb;
-      border-color: #555;
-    }
+    .nav-link.active { color: #fff; border-color: #888; }
 
     main {
       padding: 7rem 2.5rem 5rem;
@@ -86,9 +81,7 @@
       border-bottom: 1px solid #111;
     }
 
-    .person:last-child {
-      border-bottom: none;
-    }
+    .person:last-child { border-bottom: none; }
 
     .person-image {
       width: 90px;
@@ -97,19 +90,10 @@
       object-fit: cover;
       display: block;
       filter: grayscale(100%);
+      opacity: 0.5;
     }
 
-    .person-image-placeholder {
-      width: 90px;
-      height: 90px;
-      flex-shrink: 0;
-      background: #0a0a0a;
-      border: 1px solid #1a1a1a;
-    }
-
-    .person-info {
-      flex: 1;
-    }
+    .person-info { flex: 1; }
 
     .person-name {
       font-size: 0.85rem;
@@ -148,19 +132,10 @@
       padding: 2px 7px;
     }
 
-    .person-contact {
-      font-size: 0.56rem;
-      letter-spacing: 0.02em;
-    }
+    .person-contact { font-size: 0.56rem; letter-spacing: 0.02em; }
 
-    .person-contact a {
-      color: #888;
-      text-decoration: none;
-    }
-
-    .person-contact a:hover {
-      color: #ccc;
-    }
+    .person-contact a { color: #888; text-decoration: none; }
+    .person-contact a:hover { color: #ccc; }
 
     footer {
       position: fixed;
@@ -184,13 +159,14 @@
   <nav>
     <a href="index.html" class="nav-link">research</a>
     <a href="people.html" class="nav-link active">people</a>
+    <a href="https://total-ecology.net" class="nav-link">creative inquiry</a>
   </nav>
 
   <main>
     <p class="page-heading">Research Group</p>
 
     <div class="person">
-      <div class="person-image-placeholder"></div>
+      <img class="person-image" src="assets/people/placeholder.png" alt="">
       <div class="person-info">
         <div class="person-name">Paul J. CaraDonna</div>
         <div class="person-role">Principal Investigator</div>
@@ -207,7 +183,7 @@
     </div>
 
     <div class="person">
-      <div class="person-image-placeholder"></div>
+      <img class="person-image" src="assets/people/placeholder.png" alt="">
       <div class="person-info">
         <div class="person-name">Nick N. Dorian</div>
         <div class="person-role">Postdoctoral Associate</div>
@@ -223,7 +199,7 @@
     </div>
 
     <div class="person">
-      <div class="person-image-placeholder"></div>
+      <img class="person-image" src="assets/people/placeholder.png" alt="">
       <div class="person-info">
         <div class="person-name">Dylan T. Simpson</div>
         <div class="person-role">Postdoctoral Associate</div>
@@ -240,7 +216,7 @@
     </div>
 
     <div class="person">
-      <div class="person-image-placeholder"></div>
+      <img class="person-image" src="assets/people/placeholder.png" alt="">
       <div class="person-info">
         <div class="person-name">Ceci Rigby</div>
         <div class="person-role">MSc. Student</div>
@@ -256,7 +232,7 @@
     </div>
 
     <div class="person">
-      <div class="person-image-placeholder"></div>
+      <img class="person-image" src="assets/people/placeholder.png" alt="">
       <div class="person-info">
         <div class="person-name">Caroline Smith</div>
         <div class="person-role">MSc. Student</div>
@@ -269,7 +245,7 @@
     </div>
 
     <div class="person">
-      <div class="person-image-placeholder"></div>
+      <img class="person-image" src="assets/people/placeholder.png" alt="">
       <div class="person-info">
         <div class="person-name">Orly Lindner</div>
         <div class="person-role">MSc. Student</div>
@@ -283,7 +259,7 @@
     </div>
 
     <div class="person">
-      <div class="person-image-placeholder"></div>
+      <img class="person-image" src="assets/people/placeholder.png" alt="">
       <div class="person-info">
         <div class="person-name">Emma Dawson-Glass</div>
         <div class="person-role">PhD Candidate</div>
@@ -300,7 +276,7 @@
     </div>
 
     <div class="person">
-      <div class="person-image-placeholder"></div>
+      <img class="person-image" src="assets/people/placeholder.png" alt="">
       <div class="person-info">
         <div class="person-name">Emma Coflin</div>
         <div class="person-role">MSc. Student (starting fall 2026)</div>
@@ -313,7 +289,7 @@
     </div>
 
     <div class="person">
-      <div class="person-image-placeholder"></div>
+      <img class="person-image" src="assets/people/placeholder.png" alt="">
       <div class="person-info">
         <div class="person-name">Mark Dorf</div>
         <div class="person-role">Artist</div>
