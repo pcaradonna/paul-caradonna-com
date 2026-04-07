@@ -137,6 +137,29 @@
     .person-contact a { color: #888; text-decoration: none; }
     .person-contact a:hover { color: #ccc; }
 
+    .person-image { cursor: zoom-in; }
+
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.88);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox img {
+      max-width: 88vw;
+      max-height: 88vh;
+      object-fit: contain;
+      filter: grayscale(100%);
+      cursor: zoom-out;
+    }
+
     footer {
       position: fixed;
       bottom: 1.6rem;
@@ -305,6 +328,25 @@
   </main>
 
   <footer>paul-caradonna.com</footer>
+
+  <div id="lightbox"><img id="lightbox-img" src="" alt=""></div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    document.querySelectorAll('.person-image').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add('open');
+      });
+    });
+
+    lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') lightbox.classList.remove('open');
+    });
+  </script>
 
 </body>
 </html>
