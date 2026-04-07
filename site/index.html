@@ -1037,7 +1037,7 @@ const papers = [
     year: 2026,
     journal: "Frontiers in Ecology and the Environment",
     citation: "Murphy, A.W., N.N. Dorian, E. Minor, P.J. CaraDonna, S.R. Griffin, H. Holm, A.M. Iler, G.E. Kirschke, J.S. MacIvor, K.R. Urban-Mead, E. Youngsteadt, E.E. Crone. Defining the pollinator garden: is conceptual flexibility a feature or a bug? Frontiers in Ecology and the Environment.",
-    doi: "",
+    doi: "[accepted, in press]",
     tags: ["urban", "community"]
   },
   {
@@ -1387,7 +1387,13 @@ function openDetail(node, el) {
   }).join('');
 
   if (node.doi) {
-    detailDoi.href = node.doi;
+    if (node.doi.startsWith('http')) {
+      detailDoi.href = node.doi;
+      detailDoi.style.pointerEvents = '';
+    } else {
+      detailDoi.href = '#';
+      detailDoi.style.pointerEvents = 'none';
+    }
     detailDoi.textContent = node.doi;
     detailDoi.style.display = '';
   } else {
