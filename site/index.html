@@ -253,6 +253,29 @@
       pointer-events: none;
     }
 
+    #overview-panel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 4;
+      background: rgba(0, 0, 0, 0.84);
+      overflow-y: auto;
+      padding: 7rem 3rem 5rem;
+      display: none;
+    }
+
+    .overview-text {
+      font-size: 0.72rem;
+      color: #888;
+      line-height: 1.9;
+      max-width: 600px;
+      margin-bottom: 0.7rem;
+    }
+
+    .overview-spacer { height: 1.2rem; }
+
     #list-view {
       position: fixed;
       top: 7rem;
@@ -457,6 +480,18 @@
   <a id="detail-doi" href="#" target="_blank" rel="noopener"></a>
 </div>
 
+<div id="overview-panel">
+  <p class="overview-text">We study the importance of species interactions for the population and community ecology of plants and animals. And we're broadly interested in the following kinds of ecological questions:</p>
+  <div class="overview-spacer"></div>
+  <p class="overview-text">How and why do interactions form in nature?</p>
+  <p class="overview-text">How important are they for population and community processes? When are they important? When are they not?</p>
+  <p class="overview-text">How do they play out under environmental change?</p>
+  <p class="overview-text">How does understanding ecological interactions add value to conservation and restoration?</p>
+  <div class="overview-spacer"></div>
+  <p class="overview-text">Most often, our research uses the mutualistic interactions among plants and pollinators as a general model system to ask fundamental ecological questions about the importance of species interactions and to understand the ecological consequences of global change (e.g., climate change, pollinator declines, urbanization). We are also particularly interested in temporal ecology and the flexibility of species interactions. We address research questions using a variety of approaches including: observational field studies that leverage existing natural variation; field and laboratory experiments that build upon knowledge of this natural variation; analysis of long-term datasets and natural history collections; analytical tools like network analysis and simulation models; and creative inquiry to explore the margins of ways of knowing nature.</p>
+  <div class="overview-spacer"></div>
+  <p class="overview-text">Within this context, we've been working in the Rocky Mountains of Colorado, the Sky Islands of Arizona, and the urban gardens of Chicago.</p>
+</div>
 <div id="list-view"></div>
 <div id="legend"></div>
 <div id="page-nav">
@@ -465,9 +500,9 @@
 </div>
 <div id="view-tabs">
   <span class="view-label">research:</span>
-  <a class="view-tab" href="overview.html">overview</a>
+  <button class="view-tab" id="tab-overview">overview</button>
   <button class="view-tab active" id="tab-network">network</button>
-  <button class="view-tab" id="tab-list">list</button>
+  <button class="view-tab" id="tab-list">publication list</button>
 </div>
 <div id="zoom-controls">
   <button class="zoom-btn" id="zoom-out">&#8722;</button>
@@ -1432,9 +1467,25 @@ document.addEventListener('click', () => {
   document.getElementById('list-view').innerHTML = html;
 })();
 
-const tabNetwork = document.getElementById('tab-network');
-const tabList = document.getElementById('tab-list');
+const tabOverview = document.getElementById('tab-overview');
+const tabNetwork  = document.getElementById('tab-network');
+const tabList     = document.getElementById('tab-list');
 const zoomControls = document.getElementById('zoom-controls');
+
+function setActiveTab(tab) {
+  [tabOverview, tabNetwork, tabList].forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+}
+
+function showOverview() {
+  document.getElementById('lines').style.display = '';
+  document.getElementById('cards').style.display = '';
+  document.getElementById('legend').style.display = 'none';
+  zoomControls.style.display = 'none';
+  document.getElementById('list-view').style.display = 'none';
+  document.getElementById('overview-panel').style.display = 'block';
+  setActiveTab(tabOverview);
+}
 
 function showNetwork() {
   document.getElementById('lines').style.display = '';
@@ -1442,8 +1493,8 @@ function showNetwork() {
   document.getElementById('legend').style.display = '';
   zoomControls.style.display = '';
   document.getElementById('list-view').style.display = 'none';
-  tabNetwork.classList.add('active');
-  tabList.classList.remove('active');
+  document.getElementById('overview-panel').style.display = 'none';
+  setActiveTab(tabNetwork);
 }
 
 function showList() {
@@ -1452,12 +1503,13 @@ function showList() {
   document.getElementById('legend').style.display = 'none';
   zoomControls.style.display = 'none';
   document.getElementById('list-view').style.display = 'block';
-  tabList.classList.add('active');
-  tabNetwork.classList.remove('active');
+  document.getElementById('overview-panel').style.display = 'none';
+  setActiveTab(tabList);
 }
 
-tabNetwork.addEventListener('click', e => { e.stopPropagation(); showNetwork(); });
-tabList.addEventListener('click', e => { e.stopPropagation(); showList(); });
+tabOverview.addEventListener('click', e => { e.stopPropagation(); showOverview(); });
+tabNetwork.addEventListener('click',  e => { e.stopPropagation(); showNetwork(); });
+tabList.addEventListener('click',     e => { e.stopPropagation(); showList(); });
 
 // ── RESIZE ───────────────────────────────────────────────────────────────────
 window.addEventListener('resize', () => {
