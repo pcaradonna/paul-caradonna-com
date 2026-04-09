@@ -141,12 +141,12 @@
       align-items: center;
       gap: 7px;
       cursor: pointer;
-      opacity: 0.45;
+      opacity: 0.65;
       transition: opacity 0.15s;
     }
 
     .legend-item:hover {
-      opacity: 0.8;
+      opacity: 0.92;
     }
 
     .legend-item.active {
@@ -162,7 +162,7 @@
 
     .legend-label {
       font-size: 0.6rem;
-      color: #ccc;
+      color: #eee;
       letter-spacing: 0.04em;
       text-transform: lowercase;
     }
@@ -1445,12 +1445,29 @@ function applyThemeFilter() {
   if (!activeTheme) {
     cardEls.forEach(el => el.classList.remove('dimmed'));
     lineEls.classed('dimmed', false);
+    // Restore original grid targets
+    simulation
+      .force('x', d3.forceX(d => d.tx).strength(0.06))
+      .force('y', d3.forceY(d => d.ty).strength(0.06))
+      .alpha(0.25).restart();
     return;
   }
+
   cardEls.forEach((el, i) => {
     el.classList.toggle('dimmed', !nodes[i].tags.includes(activeTheme));
   });
   lineEls.classed('dimmed', d => d.theme !== activeTheme);
+
+  // Pull matching nodes toward screen center; push others to their grid targets
+  const theme = activeTheme;
+  const cx = W / 2;
+  const cy = H / 2;
+  simulation
+    .force('x', d3.forceX(d => d.tags.includes(theme) ? cx : d.tx)
+      .strength(d => d.tags.includes(theme) ? 0.18 : 0.04))
+    .force('y', d3.forceY(d => d.tags.includes(theme) ? cy : d.ty)
+      .strength(d => d.tags.includes(theme) ? 0.18 : 0.04))
+    .alpha(0.5).restart();
 }
 
 // clear filter on background click (not after a pan)
