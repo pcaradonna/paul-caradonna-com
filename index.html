@@ -1554,6 +1554,10 @@ tabOverview.addEventListener('click', e => { e.stopPropagation(); showOverview()
 tabNetwork.addEventListener('click',  e => { e.stopPropagation(); showNetwork(); });
 tabList.addEventListener('click',     e => { e.stopPropagation(); showList(); });
 
+// ── HASH ROUTING — e.g. paul-caradonna.com/#list ─────────────────────────────
+if (window.location.hash === '#list')         showList();
+else if (window.location.hash === '#network') showNetwork();
+
 // ── RESIZE ───────────────────────────────────────────────────────────────────
 window.addEventListener('resize', () => {
   W = window.innerWidth;
