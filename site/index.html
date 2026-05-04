@@ -1173,26 +1173,28 @@ const lineEls = svgGroup.selectAll('line')
   .attr('stroke-width', 1);
 
 // ── CARDS ─────────────────────────────────────────────────────────────────────
-const GRID_COLS = 7;
-const GRID_ROWS = Math.ceil(papers.length / GRID_COLS);
+// Deterministic seeded random (sine hash) — same layout on every load
+function seededRand(seed) {
+  const x = Math.sin(seed + 1) * 10000;
+  return x - Math.floor(x);
+}
 
-function gridTarget(i, w, h) {
-  const leftMargin  = SHIELD_L_W + 30;
-  const rightMargin = SHIELD_R_W + 30;
-  const topMargin   = SHIELD_L_H + 30;
-  const botMargin   = h * 0.10;
+// Organic scattered targets — no grid, consistent across reloads
+function organicTarget(i, w, h) {
+  const leftMargin  = SHIELD_L_W + 50;
+  const rightMargin = SHIELD_R_W + 50;
+  const topMargin   = SHIELD_L_H + 50;
+  const botMargin   = h * 0.14;
   const availW = w - leftMargin - rightMargin;
   const availH = h - topMargin - botMargin;
-  const cellW = availW / GRID_COLS;
-  const cellH = availH / GRID_ROWS;
   return {
-    tx: leftMargin + (i % GRID_COLS + 0.5) * cellW,
-    ty: topMargin  + (Math.floor(i / GRID_COLS) + 0.5) * cellH
+    tx: leftMargin + seededRand(i * 2    ) * availW,
+    ty: topMargin  + seededRand(i * 2 + 1) * availH
   };
 }
 
 const nodes = papers.map((p, i) => {
-  const { tx, ty } = gridTarget(i, W, H);
+  const { tx, ty } = organicTarget(i, W, H);
   return { ...p, x: tx + (Math.random() - 0.5) * 80, y: ty + (Math.random() - 0.5) * 80, tx, ty };
 });
 
@@ -1431,11 +1433,13 @@ themeOrder.forEach(theme => {
       activeTheme = null;
       applyThemeFilter();
       item.classList.remove('active');
+      simulation.alphaTarget(0.008).restart(); // resume gentle drift
     } else {
       legendEl.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
       activeTheme = theme;
       applyThemeFilter();
       item.classList.add('active');
+      simulation.alphaTarget(0).alpha(0); // freeze — stops flicker during filter
     }
   });
   legendEl.appendChild(item);
@@ -1460,6 +1464,7 @@ document.addEventListener('click', () => {
     activeTheme = null;
     applyThemeFilter();
     legendEl.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
+    simulation.alphaTarget(0.008).restart(); // resume gentle drift
   }
 });
 
@@ -1546,7 +1551,7 @@ window.addEventListener('resize', () => {
   W = window.innerWidth;
   H = window.innerHeight;
   svg.attr('width', W).attr('height', H);
-  nodes.forEach((n, i) => { const t = gridTarget(i, W, H); n.tx = t.tx; n.ty = t.ty; });
+  nodes.forEach((n, i) => { const t = organicTarget(i, W, H); n.tx = t.tx; n.ty = t.ty; });
   simulation.force('x', d3.forceX(d => d.tx).strength(0.06));
   simulation.force('y', d3.forceY(d => d.ty).strength(0.06));
   simulation.alpha(0.3).restart();
