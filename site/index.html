@@ -1417,8 +1417,86 @@ document.addEventListener('click', () => { if (!didPan) closeDetail(); didPan = 
 detailClose.addEventListener('click', e => { e.stopPropagation(); closeDetail(); });
 
 // ── LEGEND & THEME FILTER ────────────────────────────────────────────────────
+// When a topic is selected:
+//   · matching cards animate to a centered cluster
+//   · non-matching cards fade out (opacity → 0.06, position unchanged)
+//   · lines for the topic stay; others hide
+// All motion is pure JS (no CSS transitions) to avoid flicker.
 const legendEl = document.getElementById('legend');
-let activeTheme = null;
+let activeTheme  = null;
+let filterAnimId = null;
+
+function cancelFilterAnim() {
+  if (filterAnimId) { cancelAnimationFrame(filterAnimId); filterAnimId = null; }
+}
+
+// Smoothly animate each card's position (via node.x/y) and opacity
+function animateCards(targets, duration, onDone) {
+  cancelFilterAnim();
+  const start = nodes.map((n, i) => ({
+    x:       n.x,
+    y:       n.y,
+    opacity: parseFloat(cardEls[i].style.opacity) || 1.0
+  }));
+  const t0 = performance.now();
+
+  function step(now) {
+    const t    = Math.min(1, (now - t0) / duration);
+    const ease = t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;
+    targets.forEach((tgt, i) => {
+      nodes[i].x = start[i].x + (tgt.x - start[i].x) * ease;
+      nodes[i].y = start[i].y + (tgt.y - start[i].y) * ease;
+      cardEls[i].style.opacity = start[i].opacity + (tgt.opacity - start[i].opacity) * ease;
+    });
+    updatePositions();
+    if (t < 1) {
+      filterAnimId = requestAnimationFrame(step);
+    } else {
+      filterAnimId = null;
+      if (onDone) onDone();
+    }
+  }
+  filterAnimId = requestAnimationFrame(step);
+}
+
+// Cluster matching cards in the center; fade non-matching in place
+function computeFilterTargets(theme) {
+  const matchIdx = nodes.reduce((acc, n, i) => { if (n.tags.includes(theme)) acc.push(i); return acc; }, []);
+  const count  = matchIdx.length;
+  const cols   = Math.ceil(Math.sqrt(count * 1.5));
+  const rows   = Math.ceil(count / cols);
+  const stepX  = Math.min(320, (W * 0.78) / Math.max(cols, 1));
+  const stepY  = Math.min(150, (H * 0.65) / Math.max(rows, 1));
+  const origX  = W / 2 - (cols - 1) * stepX / 2;
+  const origY  = H / 2 - (rows - 1) * stepY / 2;
+
+  // Default: fade non-matching cards out where they stand
+  const targets = nodes.map(n => ({ x: n.x, y: n.y, opacity: 0.06 }));
+
+  matchIdx.forEach((nodeIdx, k) => {
+    targets[nodeIdx] = {
+      x:       origX + (k % cols) * stepX,
+      y:       origY + Math.floor(k / cols) * stepY,
+      opacity: 1.0
+    };
+  });
+  return targets;
+}
+
+// Return all cards to their stored organic positions
+function returnTargets() {
+  return nodes.map(n => ({ x: n.tx, y: n.ty, opacity: 1.0 }));
+}
+
+function clearFilter() {
+  activeTheme = null;
+  legendEl.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
+  lineEls.classed('dimmed', false);
+  animateCards(returnTargets(), 420, () => {
+    nodes.forEach(n => { n.x = n.tx; n.y = n.ty; n.vx = 0; n.vy = 0; });
+    simulation.alphaTarget(0.008).restart();
+  });
+}
 
 themeOrder.forEach(theme => {
   const item = document.createElement('div');
@@ -1430,42 +1508,23 @@ themeOrder.forEach(theme => {
   item.addEventListener('click', e => {
     e.stopPropagation();
     if (activeTheme === theme) {
-      activeTheme = null;
-      applyThemeFilter();
-      item.classList.remove('active');
-      simulation.alphaTarget(0.008).restart(); // resume gentle drift
+      clearFilter();
     } else {
       legendEl.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
       activeTheme = theme;
-      applyThemeFilter();
       item.classList.add('active');
-      simulation.alphaTarget(0).alpha(0); // freeze — stops flicker during filter
+      simulation.stop();
+      lineEls.classed('dimmed', d => d.theme !== theme);
+      animateCards(computeFilterTargets(theme), 420);
     }
   });
   legendEl.appendChild(item);
 });
 
-function applyThemeFilter() {
-  if (!activeTheme) {
-    cardEls.forEach(el => el.classList.remove('dimmed'));
-    lineEls.classed('dimmed', false);
-    return;
-  }
-  cardEls.forEach((el, i) => {
-    el.classList.toggle('dimmed', !nodes[i].tags.includes(activeTheme));
-  });
-  lineEls.classed('dimmed', d => d.theme !== activeTheme);
-}
-
-// clear filter on background click (not after a pan)
+// Clear filter on background click (not after a pan)
 document.addEventListener('click', () => {
   if (didPan) return;
-  if (activeTheme) {
-    activeTheme = null;
-    applyThemeFilter();
-    legendEl.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
-    simulation.alphaTarget(0.008).restart(); // resume gentle drift
-  }
+  if (activeTheme) clearFilter();
 });
 
 // ── LIST VIEW ────────────────────────────────────────────────────────────────
