@@ -73,6 +73,14 @@ contact: emmahdg@umich.edu
 
 ---
 
+name: Ryan Tang
+role: PhD Student (starting fall 2026)
+institution: Chicago Botanic Garden
+research: natural history; species interactions; phenology
+contact: ---
+
+---
+
 name: Emma Coflin
 role: MSc. Student (starting fall 2026)
 institution: Chicago Botanic Garden
