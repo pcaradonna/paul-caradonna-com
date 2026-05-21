@@ -75,15 +75,15 @@ contact: emmahdg@umich.edu
 
 name: Ryan Tang
 role: PhD Student (starting fall 2026)
-institution: Chicago Botanic Garden
-research: natural history; species interactions; phenology
+institution: Chicago Botanic Garden/Northwestern University
+research: natural history; species interactions; phenology; pollinators; environmental change
 contact: ---
 
 ---
 
 name: Emma Coflin
 role: MSc. Student (starting fall 2026)
-institution: Chicago Botanic Garden
+institution: Chicago Botanic Garden/Northwestern University
 research: ecology of pollinator gardens; ecology in urban environments
 contact: ---
 
