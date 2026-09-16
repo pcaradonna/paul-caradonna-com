@@ -18,50 +18,63 @@
       font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
     }
 
-    header {
+    /* ── Title row ── */
+    #top-title {
       position: fixed;
-      top: 2rem;
-      left: 2.5rem;
-      z-index: 5;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2.4rem;
+      z-index: 21;
+      display: flex;
+      align-items: center;
+      padding: 0 2.4rem;
+      background: rgba(0, 0, 0, 0.92);
+      border-bottom: 1px solid #1c1c1c;
     }
 
     .site-title {
-      font-size: 0.85rem;
-      font-weight: 400;
-      letter-spacing: 0.02em;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
       color: #fff;
-      text-decoration: none;
+      font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
     }
 
-    .site-title:hover { color: #aaa; }
-
-    nav {
+    /* ── Main nav row ── */
+    #top-nav {
       position: fixed;
-      top: 1.5rem;
-      right: 2.2rem;
-      z-index: 5;
+      top: 2.4rem;
+      left: 0;
+      right: 0;
+      z-index: 20;
       display: flex;
-      gap: 1.2rem;
+      align-items: center;
+      gap: 1.1rem;
+      padding: 0.5rem 2.4rem;
+      background: rgba(0, 0, 0, 0.92);
+      border-bottom: 1px solid #2a2a2a;
     }
 
-    .nav-link {
-      background: none;
-      border: 1px solid #555;
-      color: #bbb;
+    .tab-btn {
       font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
       font-size: 0.58rem;
-      letter-spacing: 0.05em;
-      padding: 5px 10px;
+      letter-spacing: 0.08em;
+      color: #999;
       text-decoration: none;
+      background: transparent;
+      border: 1px solid #333;
+      padding: 0.28rem 0.85rem;
+      cursor: pointer;
       display: inline-block;
+      white-space: nowrap;
     }
 
-    .nav-link:hover { border-color: #999; color: #fff; }
-
-    .nav-link.active { color: #fff; border-color: #888; }
+    .tab-btn:hover { color: #ccc; border-color: #666; }
+    .tab-btn.active { color: #fff; border-color: #888; }
 
     main {
-      padding: 7rem 2.5rem 5rem;
+      padding: 6.5rem 2.5rem 5rem;
       max-width: 860px;
     }
 
@@ -176,14 +189,13 @@
 </head>
 <body>
 
-  <header>
-    <a href="index.html" class="site-title">Paul CaraDonna</a>
-  </header>
-
-  <nav>
-    <a href="index.html" class="nav-link">research</a>
-    <a href="people.html" class="nav-link active">people</a>
-    <a href="https://total-ecology.net" class="nav-link">creative inquiry</a>
+  <div id="top-title">
+    <span class="site-title">The Research Group of Paul J. CaraDonna</span>
+  </div>
+  <nav id="top-nav">
+    <a class="tab-btn" href="index.html">research</a>
+    <span class="tab-btn active">people</span>
+    <a class="tab-btn" href="https://total-ecology.net">creative inquiry</a>
   </nav>
 
   <main>
