@@ -1374,7 +1374,7 @@ const cardEls = nodes.map((node, i) => {
   ).join('');
   div.innerHTML =
     '<div class="card-title">' + node.title + '</div>' +
-    '<div class="card-meta">' + node.short + ' \u00b7 ' + node.year + '</div>' +
+    '<div class="card-meta">' + node.journal + ' \u00b7 ' + node.year + '</div>' +
     '<div class="card-dots">' + dots + '</div>';
   div.style.left = node.x + 'px';
   div.style.top = node.y + 'px';
