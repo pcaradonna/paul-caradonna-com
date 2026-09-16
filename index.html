@@ -416,7 +416,7 @@
     .pub-row:hover .pub-authors-cell { color: #ccc; }
     .pub-row:hover .pub-journal-cell { color: #bbb; }
     .pub-row:hover .pub-pdf-link     { color: #bbb; }
-    #list-view:has(.pub-row:hover) .pub-row:not(:hover) { opacity: 0.25; }
+    #list-view:has(.pub-row:hover) .pub-row:not(:hover) { opacity: 0.75; }
 
     .pub-year-cell {
       width: 3rem;
@@ -479,11 +479,13 @@
       width: 13px;
       height: 16px;
       display: block;
-      opacity: 0.45;
+      opacity: 0.55;
       image-rendering: pixelated;
     }
 
-    .pub-pdf-link:hover .pdf-icon { opacity: 1; }
+    .pub-row:hover .pdf-icon { opacity: 1; }
+    .pub-pdf-link.preprint .pdf-icon { filter: grayscale(100%); }
+    .pub-row:hover .pub-pdf-link.preprint .pdf-icon { filter: grayscale(100%); opacity: 1; }
 
     /* ── Filter bar ── */
     .pub-filter-bar {
@@ -665,6 +667,7 @@ const papers = [
     journal: "Applications in Plant Sciences",
     citation: "Benkendorf, R., E. Woodworth, P.J. CaraDonna, J.E. Ogilvie, S. Taddeo, J. Fant. Protocol to increase accuracy of metagenomic barcoding using Angiosperms353: a case study with bumble bee pollen loads. Applications in Plant Sciences.",
     doi: "https://doi.org/10.1002/aps3.70026",
+    pdf: "pdfs/benkendorf-caradonna-2025-aps.pdf",
     tags: ["bees"]
   },
   // 2025
@@ -676,6 +679,7 @@ const papers = [
     journal: "Conservation Biology",
     citation: "Dorian, N.N., M. Murphey, A. Iler, P.J. CaraDonna. Setting goals for pollinator gardens. Conservation Biology.",
     doi: "",
+    pdf: "pdfs/dorian-caradonna-2025-consbio.pdf",
     tags: ["bees", "urban", "community"]
   },
   {
@@ -686,6 +690,7 @@ const papers = [
     journal: "Oikos",
     citation: "Cahill, C.M., P.J. CaraDonna, J.R.K. Forrest. Fitness consequences of non-native floral resource use for subalpine solitary bees: evidence of an ecological trap? Oikos. e11151.",
     doi: "https://doi.org/10.1111/oik.11151",
+    pdf: "pdfs/cahill-caradonna-2025-oikos.pdf",
     tags: ["bees", "subalpine", "community"]
   },
   {
@@ -696,6 +701,7 @@ const papers = [
     journal: "Journal of Animal Ecology",
     citation: "Fitzgerald, J.L., J.E. Ogilvie, P.J. CaraDonna. Intraspecific body size variation across distributional moments reveals trait filtering processes. Journal of Animal Ecology. 94:394–409.",
     doi: "https://doi.org/10.1111/1365-2656.14205",
+    pdf: "pdfs/fitzgerald-caradonna-2025-jae.pdf",
     tags: ["bees", "community"]
   },
   // 2024
@@ -707,6 +713,7 @@ const papers = [
     journal: "Ecosphere",
     citation: "Zink, A., P.J. CaraDonna, K. Larsen, A.M. Iler. Pollination deficits increase with urbanization on urban farms in Chicago. Ecosphere. 15, e70100.",
     doi: "https://doi.org/10.1002/ecs2.70100",
+    pdf: "pdfs/zink-caradonna-2024-ecosphere.pdf",
     tags: ["urban", "networks", "community"]
   },
   {
@@ -717,6 +724,7 @@ const papers = [
     journal: "Ecology & Evolution",
     citation: "Van Valkenburg, E., T. Gonçalves-Souza, N.J. Sanders, P.J. CaraDonna. Sodium-enriched nectar shapes plant-pollinator interactions in a subalpine meadow. Ecology & Evolution. 14, e70026.",
     doi: "https://doi.org/10.1002/ece3.70026",
+    pdf: "pdfs/vanvalkenburg-caradonna-2024-ee.pdf",
     tags: ["nectar", "networks", "subalpine"]
   },
   {
@@ -727,6 +735,7 @@ const papers = [
     journal: "Trends in Ecology & Evolution",
     citation: "Peralta, G., P.J. CaraDonna, D. Rakosy, J. Fründ, et al. Predicting plant-pollinator interactions: concepts, methods, and challenges. Trends in Ecology & Evolution. 39: 494–505.",
     doi: "https://doi.org/10.1016/j.tree.2024.01.003",
+    pdf: "pdfs/peralta-caradonna-2024-tree.pdf",
     tags: ["networks", "community"]
   },
   {
@@ -737,6 +746,7 @@ const papers = [
     journal: "Southwestern Naturalist",
     citation: "Ingold, D.I., P.J. CaraDonna, J.L. Dooley, D.J. Ingold, A.M. Iler. The Reproductive ecology of Erigeron speciosus, a montane perennial herb: evidence of self-incompatibility. Southwestern Naturalist. 68: 13–19.",
     doi: "https://doi.org/10.1894/0038-4909-68.1.13",
+    pdf: "pdfs/ingold-caradonna-2024-swnat.pdf",
     tags: ["subalpine", "phenology", "community"]
   },
   // 2023
@@ -769,6 +779,7 @@ const papers = [
     journal: "Frontiers in Conservation Science",
     citation: "Sandacz, D., P. Vitt, T.M. Knight, P.J. CaraDonna, K. Havens. The effects of decline of a keystone plant species on a dune community plant-pollinator network. Frontiers in Conservation Science.",
     doi: "",
+    pdf: "pdfs/sandacz-caradonna-2023-fcosc.pdf",
     tags: ["networks", "community"]
   },
   {
@@ -779,6 +790,7 @@ const papers = [
     journal: "American Journal of Botany",
     citation: "Iler, A.M., P.J. CaraDonna, L. Richardson, E. Wu, et al. Genotype accounts for intraspecific variation in the timing and duration of life cycle events. American Journal of Botany. 110:e16112.",
     doi: "https://doi.org/10.1002/ajb2.16112",
+    pdf: "pdfs/iler-caradonna-2023-ajb.pdf",
     tags: ["phenology", "demography", "climate"]
   },
   // 2022
@@ -823,6 +835,7 @@ const papers = [
     journal: "Journal of Animal Ecology",
     citation: "Semmler, R., N. Sanders, P.J. CaraDonna, et al. Reef fishes weaken dietary preferences after coral mortality, altering resource overlap. Journal of Animal Ecology. 91:2125–2134.",
     doi: "https://doi.org/10.1111/1365-2656.13779",
+    pdf: "pdfs/semmler-caradonna-2022-jae.pdf",
     tags: ["networks", "community"]
   },
   {
@@ -844,6 +857,7 @@ const papers = [
     journal: "Biology Letters",
     citation: "Finkelstein, C., P.J. CaraDonna, A.M. Gruver, E. Welti, M. Kaspari, N.J. Sanders. Sodium-enriched floral nectar increases pollinator visitation rate and diversity. Biology Letters. 18: 20220016.",
     doi: "https://doi.org/10.1098/rsbl.2022.0016",
+    pdf: "pdfs/finkelstein-caradonna-2022-biolletts.pdf",
     tags: ["nectar", "networks", "community"]
   },
   // 2021
@@ -855,6 +869,7 @@ const papers = [
     journal: "Ecology Letters",
     citation: "CaraDonna, P.J., L. Burkle, B. Schwarz, J. Resasco, et al. Seeing through the static: the temporal dimension of plant-animal mutualistic interactions. Ecology Letters. 24:149–161.",
     doi: "https://doi.org/10.1111/ele.13653",
+    pdf: "pdfs/caradonna-burkle-2021-ecollett.pdf",
     tags: ["networks", "temporal", "community"]
   },
   {
@@ -909,6 +924,7 @@ const papers = [
     journal: "Biological Invasions",
     citation: "Hui, C., D.M. Richardson, P. Landi, et al., P.J. CaraDonna, et al. Trait positions for elevated invasiveness in adaptive ecological networks. Biological Invasions.",
     doi: "https://doi.org/10.1007/s10530-021-02677-z",
+    pdf: "pdfs/hui-caradonna-2021-biolinv.pdf",
     tags: ["networks", "community"]
   },
   // 2020
@@ -953,6 +969,7 @@ const papers = [
     journal: "PNAS",
     citation: "Cordes, L.S., K.B. Armitage, D. Blumstein, P.J. CaraDonna, et al. Contrasting effects of climate change on seasonal survival of a hibernating mammal. PNAS. 117: 18119-18126.",
     doi: "https://doi.org/10.1073/pnas.1918584117",
+    pdf: "pdfs/cordes-caradonna-2020-pnas.pdf",
     tags: ["climate", "demography"]
   },
   {
@@ -963,6 +980,7 @@ const papers = [
     journal: "Nature Communications",
     citation: "Bramon Mora, B., E. Shin, P.J. CaraDonna, D.B. Stouffer. Untangling the seasonal dynamics of plant-pollinator communities. Nature Communications. 11:4086.",
     doi: "https://doi.org/10.1038/s41467-020-17894-y",
+    pdf: "pdfs/bramon-mora-caradonna-2020-natcomm.pdf",
     tags: ["networks", "temporal", "phenology"]
   },
   // 2019
@@ -974,6 +992,7 @@ const papers = [
     journal: "Journal of Ecology",
     citation: "Iler, A.M., A. Compagnoni, D.W. Inouye, J.L. Williams, P.J. CaraDonna, et al. Reproductive losses due to climate change-induced earlier flowering are not the primary threat to plant population viability in a perennial herb. Journal of Ecology. 107: 1931–1943.",
     doi: "https://doi.org/10.1111/1365-2745.13190",
+    pdf: "pdfs/iler-caradonna-2019-jecol.pdf",
     tags: ["demography", "phenology", "climate", "subalpine"]
   },
   {
@@ -984,6 +1003,7 @@ const papers = [
     journal: "Ecosphere",
     citation: "Cameron, E., M. Sundqvist, S. Keith, P.J. CaraDonna, et al. Uneven global distribution of food web studies under climate change. Ecosphere. 10 (3): e02645.",
     doi: "https://doi.org/10.1002/ecs2.2645",
+    pdf: "pdfs/cameron-caradonna-2019-ecosphere.pdf",
     tags: ["networks", "climate", "community"]
   },
   {
@@ -994,6 +1014,7 @@ const papers = [
     journal: "The American Naturalist",
     citation: "Forrest, J.R.K., R. Cross, P.J. CaraDonna. Two-year bee, or not two-year bee? How voltinism is affected by temperature and season-length in a high elevation solitary bee. The American Naturalist. 193: 560–574.",
     doi: "https://doi.org/10.1086/702551",
+    pdf: "pdfs/forrest-caradonna-2019-amnat.pdf",
     tags: ["bees", "climate", "subalpine"]
   },
   // 2018
@@ -1134,6 +1155,7 @@ const papers = [
     journal: "EcoEvoRxiv",
     citation: "Dormann, C.F., W.J. Castillo, P.J. CaraDonna, et al. Predicting interaction frequency in plant-pollinator networks. EcoEvoRxiv.",
     doi: "https://doi.org/10.32942/X2S63Z",
+    pdf: "pdfs/dormann-caradonna-2025-ecoevorxiv.pdf",
     tags: []
   },
   {
@@ -1144,6 +1166,7 @@ const papers = [
     journal: "Proceedings of the Royal Society B",
     citation: "Bain, J.A., W.K. Petry, J.E. Ogilvie, P.J. CaraDonna. Nutrient niche dynamics among wild pollinators. Proceedings of the Royal Society B.",
     doi: "https://doi.org/10.1098/rspb.2025.0643",
+    pdf: "pdfs/bain-caradonna-2025-procb.pdf",
     tags: []
   },
   {
@@ -1154,6 +1177,7 @@ const papers = [
     journal: "bioRxiv",
     citation: "Sakhalkar, S.P., N. Bl\u00fcthgen, L.A. Burkle, P.J. CaraDonna, et al. Climate-driven specialisation in plant\u2013pollinator networks peaks outside the tropics. bioRxiv.",
     doi: "https://doi.org/10.1101/2025.10.08.680666",
+    pdf: "pdfs/sakhalkar-caradonna-2025-biorxiv.pdf",
     tags: []
   },
   {
@@ -1164,6 +1188,7 @@ const papers = [
     journal: "Frontiers in Ecology and the Environment",
     citation: "CaraDonna, P.J., et al. Cultivating curiosity. Frontiers in Ecology and the Environment.",
     doi: "https://doi.org/10.1002/fee.2863",
+    pdf: "pdfs/caradonna-2025-fee-curiosity.pdf",
     tags: []
   },
   {
@@ -1174,6 +1199,7 @@ const papers = [
     journal: "bioRxiv",
     citation: "Kirschke, G.E., J.A. Bain, J.E. Ogilvie, P.J. CaraDonna. A Practical Roadmap For Sampling Floral Nectar From Communities of Many Plant Species. bioRxiv.",
     doi: "https://doi.org/10.64898/2025.12.19.695174",
+    pdf: "pdfs/kirschke-caradonna-2025-biorxiv.pdf",
     tags: []
   },
   {
@@ -1184,6 +1210,7 @@ const papers = [
     journal: "bioRxiv",
     citation: "Godtfredsen, E., P.J. CaraDonna, A. Foxx, J. Bain, B. Connolly, K. Dawdy, A. Doucet, J. Fitzgerald, G. Kirschke, J. Ogilvie, C. Rigby, J. Scholl, D. Sandacz, S. Rosa, A. Zink, A.M. Iler. Meta-analyses reveal no clear demographic consequences of phenological change across taxa. bioRxiv.",
     doi: "https://doi.org/10.1101/2025.10.29.685396",
+    pdf: "pdfs/godtfredsen-caradonna-2025-biorxiv.pdf",
     tags: []
   },
   {
@@ -1194,6 +1221,7 @@ const papers = [
     journal: "bioRxiv",
     citation: "Simpson, D.T., W.K. Petry, P.J. CaraDonna, A.M. Iler. Changing pollination rates affect plant life history strategies. bioRxiv.",
     doi: "https://doi.org/10.64898/2026.02.11.705202",
+    pdf: "pdfs/simpson-caradonna-2026-biorxiv.pdf",
     tags: []
   },
   {
@@ -1204,6 +1232,7 @@ const papers = [
     journal: "Frontiers in Ecology and the Environment",
     citation: "Murphy, A.W., N.N. Dorian, E. Minor, P.J. CaraDonna, S.R. Griffin, H. Holm, A.M. Iler, G.E. Kirschke, J.S. MacIvor, K.R. Urban-Mead, E. Youngsteadt, E.E. Crone. Defining the pollinator garden: is conceptual flexibility a feature or a bug? Frontiers in Ecology and the Environment.",
     doi: "[accepted, in press]",
+    pdf: "pdfs/murphy-caradonna-2026-fee.pdf",
     tags: ["urban", "community"]
   },
   {
@@ -1214,7 +1243,30 @@ const papers = [
     journal: "Ecosphere",
     citation: "Dorian, N.N., I.R. Valdes, P.J. CaraDonna, J. Finch, R. Hawke, A.M. Iler, K. Havens. Evaluating cultivars for pollinator gardens. Ecosphere. 17(4): e70566.",
     doi: "https://doi.org/10.1002/ecs2.70566",
+    pdf: "pdfs/dorian-caradonna-2026-ecosphere.pdf",
     tags: ["urban", "community"]
+  },
+  {
+    id: 52,
+    title: "Projecting the vertical disassembly of the bumble bee pollination network of the Southern Rocky Mountains",
+    short: "Catchen, CaraDonna, Ogilvie, Resasco, Poisot, Pollock, Gonzalez",
+    year: 2026,
+    journal: "bioRxiv",
+    citation: "Catchen, M.D., P.J. CaraDonna, J.E. Ogilvie, J. Resasco, T. Poisot, L.J. Pollock, A. Gonzalez. Projecting the vertical disassembly of the bumble bee pollination network of the Southern Rocky Mountains. bioRxiv.",
+    doi: "",
+    pdf: "pdfs/catchen-caradonna-2026-biorxiv.pdf",
+    tags: ["bees", "networks", "climate"]
+  },
+  {
+    id: 53,
+    title: "Demographic trade-offs decouple pollination services from plant population growth",
+    short: "Iler, CaraDonna, Petry",
+    year: 2026,
+    journal: "bioRxiv",
+    citation: "Iler, A.M., P.J. CaraDonna, W.K. Petry. Demographic trade-offs decouple pollination services from plant population growth. bioRxiv.",
+    doi: "https://doi.org/10.64898/2026.05.20.726591",
+    pdf: "pdfs/iler-caradonna-petry-2026-biorxiv.pdf",
+    tags: ["demography", "community", "phenology"]
   }
 ];
 
@@ -1708,8 +1760,9 @@ document.addEventListener('click', () => {
   // ── render a single row ──────────────────────────────────────────────────────
   function renderRow(p) {
     const yr = (p.year === 'in rev.') ? 'rev.' : String(p.year);
+    const isPreprint = p.journal === 'bioRxiv' || p.journal === 'EcoEvoRxiv';
     const pdfCell = p.pdf
-      ? '<a class="pub-pdf-link" href="' + p.pdf + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' +
+      ? '<a class="pub-pdf-link' + (isPreprint ? ' preprint' : '') + '" href="' + p.pdf + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' +
         '<img class="pdf-icon" src="assets/pdf-icon.svg" alt="PDF"></a>'
       : '';
     return '<div class="pub-row" data-id="' + p.id + '">' +
