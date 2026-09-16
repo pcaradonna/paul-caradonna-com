@@ -1679,6 +1679,32 @@ document.addEventListener('click', () => {
   // ── unique tags ──────────────────────────────────────────────────────────────
   const allTags = [...new Set(papers.flatMap(p => p.tags || []))].sort();
 
+  // ── lightweight stemmer: strips common suffixes so phenology ↔ phenological ──
+  function stemWord(w) {
+    w = w.toLowerCase().replace(/[^a-z]/g, '');
+    if (w.length < 4) return w;
+    const rules = [
+      [/ologically$/, ''], [/ological$/, ''], [/ology$/, 'olog'],
+      [/ically$/, ''],     [/ical$/, ''],
+      [/ations$/, ''],     [/ation$/, ''],    [/ating$/, ''],
+      [/ators$/, ''],      [/ator$/, ''],
+      [/ities$/, ''],      [/ity$/, ''],
+      [/ings$/, ''],       [/ing$/, ''],
+      [/ers$/, ''],        [/er$/, ''],
+      [/ies$/, 'y'],       [/ed$/, ''],
+      [/ic$/, ''],         [/al$/, ''],
+      [/s$/, ''],
+    ];
+    for (const [rx, rep] of rules) {
+      if (rx.test(w)) { const s = w.replace(rx, rep); if (s.length >= 3) return s; }
+    }
+    return w;
+  }
+
+  function stemText(text) {
+    return text.toLowerCase().split(/\W+/).map(stemWord).join(' ');
+  }
+
   // ── render a single row ──────────────────────────────────────────────────────
   function renderRow(p) {
     const yr = (p.year === 'in rev.') ? 'rev.' : String(p.year);
@@ -1700,10 +1726,9 @@ document.addEventListener('click', () => {
     let filtered = papers.filter(p => {
       if (activeTopics.size > 0 && !(p.tags || []).some(t => activeTopics.has(t))) return false;
       if (searchQuery) {
-        const q = searchQuery.toLowerCase();
-        if (!p.title.toLowerCase().includes(q) &&
-            !p.short.toLowerCase().includes(q) &&
-            !p.journal.toLowerCase().includes(q)) return false;
+        const qStems = searchQuery.trim().split(/\s+/).map(stemWord);
+        const pText = stemText([p.title, p.short, p.journal].join(' '));
+        if (!qStems.every(qs => pText.includes(qs))) return false;
       }
       return true;
     });
