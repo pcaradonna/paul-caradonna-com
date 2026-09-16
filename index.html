@@ -602,6 +602,58 @@
       border-color: #555;
       color: #888;
     }
+
+    /* ── Expand panel (inline, list view) ── */
+    .pub-expand {
+      display: none;
+      padding: 0.9rem 0 1.4rem;
+      border-bottom: 1px solid #111;
+    }
+    .pub-expand.open { display: block; }
+
+    .pub-expand-journal {
+      font-size: 0.56rem;
+      color: #555;
+      font-style: italic;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.55rem;
+    }
+
+    .pub-expand-citation {
+      font-size: 0.6rem;
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+    }
+
+    .pub-expand-doi {
+      font-size: 0.57rem;
+      color: #444;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      display: block;
+      margin-bottom: 0.7rem;
+    }
+    .pub-expand-doi:hover { color: #888; }
+
+    .pub-expand-abstract {
+      font-size: 0.64rem;
+      color: #777;
+      line-height: 1.85;
+      max-width: 80ch;
+    }
+
+    .pub-expand-no-abstract {
+      font-size: 0.57rem;
+      color: #333;
+      font-style: italic;
+    }
+
+    .pub-row.expanded {
+      background: #0d0d0d;
+      border-bottom-color: transparent;
+    }
+    .pub-row.expanded .pub-title-cell { color: #fff; }
   </style>
 </head>
 <body>
@@ -656,6 +708,10 @@
 <footer>paul-caradonna.com</footer>
 
 <script>
+// ── ABSTRACTS (loaded async; available by the time user opens list view) ─────
+let abstracts = {};
+fetch('data/abstracts.json').then(r => r.json()).then(d => { abstracts = d; }).catch(() => {});
+
 // ── DATA ─────────────────────────────────────────────────────────────────────
 const papers = [
   // In Revision
@@ -1765,13 +1821,29 @@ document.addEventListener('click', () => {
       ? '<a class="pub-pdf-link' + (isPreprint ? ' preprint' : '') + '" href="' + p.pdf + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' +
         '<img class="pdf-icon" src="assets/pdf-icon.svg" alt="PDF"></a>'
       : '';
-    return '<div class="pub-row" data-id="' + p.id + '">' +
+    const row = '<div class="pub-row" data-id="' + p.id + '">' +
       '<span class="pub-year-cell">'    + yr        + '</span>' +
       '<span class="pub-title-cell">'   + p.title   + '</span>' +
       '<span class="pub-authors-cell">' + p.short   + '</span>' +
       '<span class="pub-journal-cell">' + p.journal + '</span>' +
       '<span class="pub-pdf-cell">'     + pdfCell   + '</span>' +
       '</div>';
+
+    const ab = abstracts[String(p.id)] || '';
+    const doiLink = p.doi
+      ? '<a class="pub-expand-doi" href="' + p.doi + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + p.doi + '</a>'
+      : '';
+    const abstractBlock = ab
+      ? '<div class="pub-expand-abstract">' + ab + '</div>'
+      : '<div class="pub-expand-no-abstract">Abstract not available.</div>';
+    const expand = '<div class="pub-expand" data-id="' + p.id + '">' +
+      '<div class="pub-expand-journal">' + p.journal + ' · ' + yr + '</div>' +
+      '<div class="pub-expand-citation">' + p.citation + '</div>' +
+      doiLink +
+      abstractBlock +
+      '</div>';
+
+    return row + expand;
   }
 
   // ── filter + sort + re-render rows ───────────────────────────────────────────
@@ -1780,7 +1852,7 @@ document.addEventListener('click', () => {
       if (activeTopics.size > 0 && !(p.tags || []).some(t => activeTopics.has(t))) return false;
       if (searchQuery) {
         const qStems = searchQuery.trim().split(/\s+/).map(stemWord);
-        const pText = stemText([p.title, p.short, p.journal].join(' '));
+        const pText = stemText([p.title, p.short, p.journal, abstracts[String(p.id)] || ''].join(' '));
         if (!qStems.every(qs => pText.includes(qs))) return false;
       }
       return true;
@@ -1824,6 +1896,24 @@ document.addEventListener('click', () => {
     applyFilters();
   });
   document.getElementById('filter-search').addEventListener('click', e => e.stopPropagation());
+
+  // ── event: click row to expand/collapse ─────────────────────────────────────
+  document.getElementById('pub-rows').addEventListener('click', e => {
+    const row = e.target.closest('.pub-row');
+    if (!row) return;
+    const expandEl = row.nextElementSibling;  // always the matching .pub-expand
+    const isOpen = expandEl && expandEl.classList.contains('open');
+
+    // close all
+    document.querySelectorAll('.pub-expand.open').forEach(el => el.classList.remove('open'));
+    document.querySelectorAll('.pub-row.expanded').forEach(el => el.classList.remove('expanded'));
+
+    // open this one (unless it was already open — click again to collapse)
+    if (!isOpen && expandEl) {
+      expandEl.classList.add('open');
+      row.classList.add('expanded');
+    }
+  });
 
 })();
 
