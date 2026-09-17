@@ -87,7 +87,7 @@
     /* rectangular tab buttons */
     .tab-btn {
       font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
-      font-size: 0.58rem;
+      font-size: 0.72rem;
       letter-spacing: 0.08em;
       color: #999;
       text-decoration: none;
@@ -123,13 +123,13 @@
 
     .tab-sub-btn {
       font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
-      font-size: 0.53rem;
+      font-size: 0.72rem;
       letter-spacing: 0.06em;
       color: #666;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 0.1rem 0;
+      padding: 0.22rem 0;
       text-align: left;
       line-height: 1.6;
       white-space: nowrap;
@@ -1910,6 +1910,15 @@ document.addEventListener('click', () => {
 
     // open this one (unless it was already open — click again to collapse)
     if (!isOpen && expandEl) {
+      // abstracts load async — patch in at click time if not already rendered
+      const abEl = expandEl.querySelector('.pub-expand-no-abstract');
+      if (abEl) {
+        const ab = abstracts[row.dataset.id] || '';
+        if (ab) {
+          abEl.className = 'pub-expand-abstract';
+          abEl.textContent = ab;
+        }
+      }
       expandEl.classList.add('open');
       row.classList.add('expanded');
     }
