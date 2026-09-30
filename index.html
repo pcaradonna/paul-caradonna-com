@@ -115,10 +115,16 @@
       left: 0;
       display: flex;
       flex-direction: column;
+      gap: 0;
       padding: 0.3rem 0.85rem 0.35rem;
       background: rgba(0, 0, 0, 0.92);
       border: 1px solid #2a2a2a;
       z-index: 19;
+    }
+
+    .tab-sub.horizontal {
+      flex-direction: row;
+      gap: 1.4rem;
     }
 
     .tab-sub-btn {
@@ -353,7 +359,7 @@
       width: 100%;
       height: 100%;
       z-index: 4;
-      background: rgba(0, 0, 0, 0.84);
+      background: rgba(0, 0, 0, 0.92);
       overflow-y: auto;
       padding: 9rem 3rem 5rem;
       display: none;
@@ -560,27 +566,6 @@
       margin-top: 0.1rem;
     }
 
-    #ui-shield {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 420px;
-      height: 9rem;
-      background: rgba(0, 0, 0, 0.82);
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    #ui-shield-right {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 280px;
-      height: 70px;
-      background: rgba(0, 0, 0, 0.82);
-      z-index: 2;
-      pointer-events: none;
-    }
 
     .zoom-btn {
       background: none;
@@ -677,8 +662,6 @@
     <button class="zoom-btn" id="zoom-in">+</button>
   </div>
 </nav>
-<div id="ui-shield"></div>
-<div id="ui-shield-right"></div>
 <svg id="lines"></svg>
 <div id="cards"></div>
 
@@ -1227,13 +1210,13 @@ const papers = [
   },
   {
     id: 45,
-    title: "Climate-driven specialisation in plant\u2013pollinator networks peaks outside the tropics",
+    title: "Global patterns in plant\u2013pollinator specialization",
     short: "Sakhalkar, Bl\u00fcthgen, Burkle, CaraDonna et al.",
-    year: 2025,
-    journal: "bioRxiv",
-    citation: "Sakhalkar, S.P., N. Bl\u00fcthgen, L.A. Burkle, P.J. CaraDonna, et al. Climate-driven specialisation in plant\u2013pollinator networks peaks outside the tropics. bioRxiv.",
-    doi: "https://doi.org/10.1101/2025.10.08.680666",
-    pdf: "pdfs/sakhalkar-caradonna-2025-biorxiv.pdf",
+    year: 2026,
+    journal: "Nature Ecology & Evolution",
+    citation: "Sakhalkar, S.P., N. Bl\u00fcthgen, L.A. Burkle, P.J. CaraDonna, et al. Global patterns in plant\u2013pollinator specialization. Nature Ecology & Evolution.",
+    doi: "https://doi.org/10.1038/s41559-026-03170-7",
+    pdf: "pdfs/sakhalkar-caradonna-2026-natecolevol.pdf",
     tags: []
   },
   {
@@ -1944,7 +1927,8 @@ function showOverview() {
   zoomControls.style.display = 'none';
   document.getElementById('list-view').style.display = 'none';
   document.getElementById('overview-panel').style.display = 'block';
-  tabSub.classList.add('expanded');
+  tabSub.classList.remove('expanded');
+  tabSub.classList.add('horizontal');
   setActiveTab(tabOverview);
 }
 
@@ -1956,6 +1940,7 @@ function showNetwork() {
   document.getElementById('list-view').style.display = 'none';
   document.getElementById('overview-panel').style.display = 'none';
   tabSub.classList.remove('expanded');
+  tabSub.classList.remove('horizontal');
   setActiveTab(tabNetwork);
 }
 
@@ -1965,9 +1950,10 @@ function showList() {
   document.getElementById('legend').style.display = 'none';
   zoomControls.style.display = 'none';
   document.getElementById('list-view').style.display = 'block';
-  document.getElementById('list-view').style.top = '6.7rem';
+  document.getElementById('list-view').style.top = '7.8rem';
   document.getElementById('overview-panel').style.display = 'none';
-  tabSub.classList.add('expanded');
+  tabSub.classList.remove('expanded');
+  tabSub.classList.add('horizontal');
   setActiveTab(tabList);
 }
 

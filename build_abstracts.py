@@ -58,7 +58,7 @@ PAPERS = [
     {"id": 42, "doi": None,                               "pdf": "pdfs/caradonna-ackerman-2012-cjs.pdf"},
     {"id": 43, "doi": "10.32942/X2S63Z",                  "pdf": "pdfs/dormann-caradonna-2025-ecoevorxiv.pdf"},
     {"id": 44, "doi": "10.1098/rspb.2025.0643",           "pdf": "pdfs/bain-caradonna-2025-procb.pdf"},
-    {"id": 45, "doi": "10.1101/2025.10.08.680666",        "pdf": "pdfs/sakhalkar-caradonna-2025-biorxiv.pdf"},
+    {"id": 45, "doi": "10.1038/s41559-026-03170-7",        "pdf": "pdfs/sakhalkar-caradonna-2026-natecolevol.pdf"},
     {"id": 46, "doi": "10.1002/fee.2863",                 "pdf": "pdfs/caradonna-2025-fee-curiosity.pdf"},
     {"id": 47, "doi": "10.64898/2025.12.19.695174",       "pdf": "pdfs/kirschke-caradonna-2025-biorxiv.pdf"},
     {"id": 48, "doi": "10.1101/2025.10.29.685396",        "pdf": "pdfs/godtfredsen-caradonna-2025-biorxiv.pdf"},
