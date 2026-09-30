@@ -41,6 +41,13 @@ contact: dsimpson@chicagobotanic.org
 
 ---
 
+name: Nicki Gustafson
+role: Project Coordinator (Pollinator Garden Ecology)
+institution: Chicago Botanic Garden
+research: ecology of pollinator gardens
+
+---
+
 name: Ceci Rigby
 role: MSc. Student
 institution: Chicago Botanic Garden/Northwestern University/Rocky Mountain Biological Laboratory
@@ -96,3 +103,13 @@ research: creative inquiry; nature-human-technology relations
 contact: mark@mdorf.com
 
 ---
+
+#Alumni
+
+Nick Dorian (postdoc)
+Jackie Fitzgerald (PhD)
+Justin Bain (PhD)
+Brendan Connolley (Msc)
+Vicky Deli
+Alex Zink (Msc)
+Andrea Gruver (Msc)

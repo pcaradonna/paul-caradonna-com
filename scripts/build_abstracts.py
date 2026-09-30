@@ -69,7 +69,7 @@ PAPERS = [
     {"id": 53, "doi": "10.64898/2026.05.20.726591",       "pdf": "pdfs/iler-caradonna-petry-2026-biorxiv.pdf"},
 ]
 
-BASE_DIR = Path(__file__).parent
+BASE_DIR = Path(__file__).parent.parent
 
 
 def clean_abstract(text):
