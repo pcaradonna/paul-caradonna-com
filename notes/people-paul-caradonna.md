@@ -25,14 +25,6 @@ contact: pcaradonna@chicagobotanic.org
 
 ---
 
-name: Nick N. Dorian
-role: Postdoctoral Associate
-institution: Chicago Botanic Garden/Catalina Industries
-research: population ecology; ecology of pollinator gardens; pollinators; creative inquiry
-contact: ndorian@chicagobotanic.org
-
----
-
 name: Dylan T. Simpson
 role: Postdoctoral Associate
 institution: Chicago Botanic Garden/Rocky Mountain Biological Laboratory/Catalina Industries
@@ -42,9 +34,10 @@ contact: dsimpson@chicagobotanic.org
 ---
 
 name: Nicki Gustafson
-role: Project Coordinator (Pollinator Garden Ecology)
+role: Project Coordinator (Pollinators Living in Urban Gardens)
 institution: Chicago Botanic Garden
 research: ecology of pollinator gardens
+contact: ngustafson@chicagobotanic.org
 
 ---
 
@@ -81,18 +74,18 @@ contact: emmahdg@umich.edu
 ---
 
 name: Ryan Tang
-role: PhD Student (starting fall 2026)
+role: PhD Student
 institution: Chicago Botanic Garden/Northwestern University
 research: natural history; species interactions; phenology; pollinators; environmental change
-contact: ---
+contact: ryantang2032@u.northwestern.edu
 
 ---
 
 name: Emma Coflin
-role: MSc. Student (starting fall 2026)
+role: MSc. Student
 institution: Chicago Botanic Garden/Northwestern University
 research: ecology of pollinator gardens; ecology in urban environments
-contact: ---
+contact: emmacoflin2028@u.northwestern.edu
 
 ---
 
@@ -104,12 +97,20 @@ contact: mark@mdorf.com
 
 ---
 
+name: Angela Ma
+role: Undergraduate Researcher
+institution: Northwestern University/Chicago Botanic Garden
+research: ecology of pollinator gardens; creative inquiry
+contact: angellama2028@u.northwestern.edu
+
+---
+
 #Alumni
 
-Nick Dorian (postdoc)
+Nick Dorian (Postdoc)
 Jackie Fitzgerald (PhD)
 Justin Bain (PhD)
 Brendan Connolley (Msc)
-Vicky Deli
+Vicky Deli (Msc)
 Alex Zink (Msc)
 Andrea Gruver (Msc)
