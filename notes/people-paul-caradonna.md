@@ -97,7 +97,7 @@ contact: mark@mdorf.com
 
 ---
 
-name: Angela Ma
+name: Angella Ma
 role: Undergraduate Researcher
 institution: Northwestern University/Chicago Botanic Garden
 research: ecology of pollinator gardens; creative inquiry
