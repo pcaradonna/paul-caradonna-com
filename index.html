@@ -654,12 +654,29 @@
       #top-nav::-webkit-scrollbar { display: none; }
 
       .tab-btn { font-size: 0.65rem; padding: 0.22rem 0.6rem; }
+
+      /* Sub-tab: fixed bar below nav so nav overflow-x doesn't clip it */
+      .tab-sub,
+      .tab-sub.horizontal,
+      .tab-sub.expanded {
+        position: fixed;
+        top: 4.8rem;
+        left: 0;
+        right: 0;
+        flex-direction: row;
+        gap: 1.2rem;
+        padding: 0.3rem 1rem 0.35rem;
+        border: none;
+        border-bottom: 1px solid #2a2a2a;
+        background: rgba(0,0,0,0.92);
+      }
       .tab-sub-btn { font-size: 0.65rem; }
 
-      #overview-panel { padding: 5rem 1.2rem 4rem; }
+      /* Push content below the fixed sub-tab bar (~7rem total from top) */
+      #overview-panel { padding: 7rem 1.2rem 4rem; }
       .overview-text { font-size: 0.78rem; }
 
-      #list-view { padding: 0 1rem 4rem; }
+      #list-view { padding: 0 1rem 4rem; top: 7rem; }
 
       .pub-authors-cell  { display: none; }
       .pub-col-authors   { display: none; }
