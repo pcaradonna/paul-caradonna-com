@@ -639,6 +639,38 @@
       border-bottom-color: transparent;
     }
     .pub-row.expanded .pub-title-cell { color: #fff; }
+
+    /* ── Mobile ─────────────────────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      #top-title { padding: 0 1rem; }
+
+      #top-nav {
+        padding: 0.4rem 1rem;
+        gap: 0.5rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      #top-nav::-webkit-scrollbar { display: none; }
+
+      .tab-btn { font-size: 0.65rem; padding: 0.22rem 0.6rem; }
+      .tab-sub-btn { font-size: 0.65rem; }
+
+      #overview-panel { padding: 5rem 1.2rem 4rem; }
+      .overview-text { font-size: 0.78rem; }
+
+      #list-view { padding: 0 1rem 4rem; }
+
+      .pub-authors-cell  { display: none; }
+      .pub-col-authors   { display: none; }
+      .pub-journal-cell  { display: none; }
+      .pub-col-journal   { display: none; }
+
+      .pub-row  { gap: 0.8rem; }
+      .pub-header { gap: 0.8rem; }
+
+      .filter-search { width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -1606,6 +1638,56 @@ cardsContainer.addEventListener('mousedown', e => {
   document.addEventListener('mouseup', onUp);
 });
 
+// ── TOUCH PAN + PINCH ZOOM ───────────────────────────────────────────────────
+let touchStartPanX = 0, touchStartPanY = 0;
+let touchStartX = 0, touchStartY = 0;
+let lastPinchDist = null;
+
+cardsContainer.addEventListener('touchstart', e => {
+  if (e.touches.length === 1) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchStartPanX = panX;
+    touchStartPanY = panY;
+    lastPinchDist = null;
+  } else if (e.touches.length === 2) {
+    lastPinchDist = Math.hypot(
+      e.touches[0].clientX - e.touches[1].clientX,
+      e.touches[0].clientY - e.touches[1].clientY
+    );
+  }
+}, { passive: true });
+
+cardsContainer.addEventListener('touchmove', e => {
+  e.preventDefault();
+  if (e.touches.length === 1 && lastPinchDist === null) {
+    panX = touchStartPanX + (e.touches[0].clientX - touchStartX);
+    panY = touchStartPanY + (e.touches[0].clientY - touchStartY);
+    updatePositions();
+  } else if (e.touches.length === 2) {
+    const dist = Math.hypot(
+      e.touches[0].clientX - e.touches[1].clientX,
+      e.touches[0].clientY - e.touches[1].clientY
+    );
+    if (lastPinchDist) {
+      const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+      const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+      zoomAround(midX, midY, dist / lastPinchDist);
+    }
+    lastPinchDist = dist;
+  }
+}, { passive: false });
+
+cardsContainer.addEventListener('touchend', () => { lastPinchDist = null; });
+
+// ── FREEZE SIMULATION ON MOBILE (no wobble) ───────────────────────────────────
+if (window.innerWidth <= 640) {
+  setTimeout(() => {
+    nodes.forEach(n => { n.fx = n.x; n.fy = n.y; });
+    simulation.alphaTarget(0).stop();
+  }, 2500);
+}
+
 // ── ZOOM BUTTONS ─────────────────────────────────────────────────────────────
 document.getElementById('zoom-in').addEventListener('click', e => {
   e.stopPropagation();
@@ -1857,8 +1939,8 @@ document.addEventListener('click', () => {
   let html = '<div class="pub-header">' +
     '<span class="pub-col" style="width:3rem;flex-shrink:0">year</span>' +
     '<span class="pub-col" style="flex:1">title</span>' +
-    '<span class="pub-col" style="width:17%">authors</span>' +
-    '<span class="pub-col" style="width:14%">journal</span>' +
+    '<span class="pub-col pub-col-authors" style="width:17%">authors</span>' +
+    '<span class="pub-col pub-col-journal" style="width:14%">journal</span>' +
     '<span class="pub-col" style="width:2rem">pdf</span>' +
     '</div>';
 
